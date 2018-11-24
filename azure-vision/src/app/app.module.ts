@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { FaceModule } from './face/face.module';
 import { CustomVisionModule } from './custom-vision/custom-vision.module';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     BrowserModule,
     FaceModule,
-    CustomVisionModule
+    CustomVisionModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
