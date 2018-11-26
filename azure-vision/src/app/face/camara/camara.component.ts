@@ -10,7 +10,6 @@ import { WebcamImage } from 'ngx-webcam';
 })
 export class CamaraComponent implements OnInit {
 
-  public seconds: number ;
   private trigger: Subject<void> = new Subject<void>();
 
   // latest snapshot
@@ -22,21 +21,10 @@ export class CamaraComponent implements OnInit {
   }
 
   public triggerSnapshot(): void {
-    this.seconds = 3;
-    setTimeout(() => {
-      this.seconds = 2;
-     setTimeout(() => {
-       this.seconds = 1;
-       setTimeout(() => {
-         this.trigger.next();
-         this.seconds = null;
-       }, 2000);
-     }, 2000);
-    }, 2000);
+    this.trigger.next();
   }
 
   public handleImage(webcamImage: WebcamImage): void {
-    // console.info('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
   }
 
