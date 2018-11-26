@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,8 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-
-import { WebcamModule } from 'ngx-webcam';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,7 @@ import { WebcamModule } from 'ngx-webcam';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    WebcamModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
