@@ -1,4 +1,15 @@
 <div style="text-align:center">
   <h3>Face Shooting - Face Api</h3>
-  <app-camara></app-camara>
+  <div style="text-align:center">
+    <div>
+      <p>{{seconds}}</p>
+      <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+      <br/>
+      <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+    </div>
+  </div>
+  <div class="snapshot" *ngIf="webcamImage">
+    <h2>Nice one!</h2>
+    <img [src]="webcamImage.imageAsDataUrl"/>
+  </div>
 </div>
