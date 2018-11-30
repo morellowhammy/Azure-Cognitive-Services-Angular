@@ -1,6 +1,6 @@
+import { FaceService } from './../../shared/face.service';
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Observable } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 import { WebcamImage } from 'ngx-webcam';
 
 @Component({
@@ -15,7 +15,7 @@ export class ShootFaceComponent implements OnInit {
   // latest snapshot
   public webcamImage: WebcamImage = null;
 
-  constructor() { }
+  constructor(private faceService: FaceService) { }
 
   ngOnInit() {
   }
@@ -26,6 +26,11 @@ export class ShootFaceComponent implements OnInit {
 
   public handleImage(webcamImage: WebcamImage): void {
     this.webcamImage = webcamImage;
+    const image = new Image();
+    image.src = webcamImage.imageAsBase64;
+    this.faceService.recognizeFace(image).subscribe((response) => {
+      console.log(response);
+    });
   }
 
   public get triggerObservable(): Observable<void> {
