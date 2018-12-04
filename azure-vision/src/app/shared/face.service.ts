@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 const config = {
-  subscriptionKey: 'd62b05bb31264373b6bad497eddd6f7e',
+  subscriptionKey: '7e6424ae04c8448d8be6bdbf14034ea3',
   params: {
       'returnFaceId': 'true',
       'returnFaceLandmarks': 'false',
@@ -19,20 +19,22 @@ const config = {
   providedIn: 'root'
 })
 export class FaceService {
+  private url;
+  private headers;
 
-  constructor(private http: HttpClient) { }
-
-  public recognizeFace(image: any): Observable<any> {
-    const url = config.uriBase + '/detect?returnFaceAttributes=' + config.params.returnFaceAttributes;
-
-    const headers = new HttpHeaders({
+  constructor(private http: HttpClient) {
+    this.url = config.uriBase + '/detect?returnFaceAttributes=' + config.params.returnFaceAttributes;
+    this.headers = new HttpHeaders({
       'Content-Type': 'application/octet-stream',
       'Ocp-Apim-Subscription-Key': config.subscriptionKey
     });
-    const options = {headers: headers};
+  }
 
-    return this.http.post<any>(url, image, options)
-      .pipe(catchError(this.handleError<any>('saveEvent')));
+  public recognizeFace(image: any): Observable<any> {
+    const options = {headers: this.headers};
+
+    return this.http.post<any>(this.url, image, options)
+      .pipe(catchError(this.handleError<any>('recognizeFace')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

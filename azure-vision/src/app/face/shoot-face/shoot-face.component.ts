@@ -2,6 +2,7 @@ import { FaceService } from './../../shared/face.service';
 import { Component, OnInit } from '@angular/core';
 import { Subject, Observable, of } from 'rxjs';
 import { WebcamImage } from 'ngx-webcam';
+import { ImageProcessorService } from 'src/app/shared/image-processor.service';
 
 @Component({
   selector: 'app-shoot-face',
@@ -12,10 +13,13 @@ export class ShootFaceComponent implements OnInit {
 
   private trigger: Subject<void> = new Subject<void>();
 
-  // latest snapshot
   public webcamImage: WebcamImage = null;
 
-  constructor(private faceService: FaceService) { }
+  public jsonResult: string = null;
+
+  constructor(
+    private faceService: FaceService,
+    private imageProcessorService: ImageProcessorService) { }
 
   ngOnInit() {
   }
@@ -26,15 +30,20 @@ export class ShootFaceComponent implements OnInit {
 
   public handleImage(webcamImage: WebcamImage): void {
     this.webcamImage = webcamImage;
-    const image = new Image();
-    image.src = webcamImage.imageAsBase64;
-    this.faceService.recognizeFace(image).subscribe((response) => {
-      console.log(response);
+
+    this.imageProcessorService.imageUrltoBlob(webcamImage.imageAsDataUrl).subscribe((image) => {
+      this.faceService.recognizeFace(image).subscribe((response) => {
+        if (response.lenght) {
+          console.log(response);
+          this.jsonResult = JSON.stringify(response);
+        } else {
+          this.jsonResult = 'NO FACE FOUND!!';
+        }
+      });
     });
   }
 
   public get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
   }
-
 }
