@@ -9,13 +9,13 @@
       </div>
       <div class="snapshot" *ngIf="webcamImage">
         <h2>Nice one!</h2>
-        <img [src]="webcamImage.imageAsDataUrl"/>
+        <img class="snapshot-image" [src]="webcamImage.imageAsDataUrl"/>
       </div>
     </div>
     <div class="json-area" *ngIf="jsonResult">
       <pre>{{jsonResult}}</pre>
     </div>
-    <div class="emoji-area">
+    <div class="emoji-area" *ngIf="jsonResult">
       <span class="emoji">{{emojiIcon}}</span>
     </div>
   </div>
