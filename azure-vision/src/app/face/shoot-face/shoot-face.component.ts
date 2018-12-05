@@ -32,10 +32,10 @@ export class ShootFaceComponent implements OnInit {
     this.webcamImage = webcamImage;
 
     this.imageProcessorService.imageUrltoBlob(webcamImage.imageAsDataUrl).subscribe((image) => {
-      this.faceService.recognizeFace(image).subscribe((response) => {
-        if (response.lenght) {
+      this.faceService.recognizeFace(image).subscribe((response: Array<any>) => {
+        if (response.length) {
           console.log(response);
-          this.jsonResult = JSON.stringify(response);
+          this.jsonResult = JSON.stringify(response[0], undefined, 2);
         } else {
           this.jsonResult = 'NO FACE FOUND!!';
         }

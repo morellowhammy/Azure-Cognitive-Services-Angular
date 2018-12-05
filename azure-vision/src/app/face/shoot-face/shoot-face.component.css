@@ -1,16 +1,13 @@
 .shoot-face-body {
-  width: 900px;
-  margin: 0 auto;
+  margin: 0 100px;
 }
 
 .left{
   float: left;
-  width: 50%;
 }
 
 .right{
-  float: right;
-  width: calc(50% - 15px);
+  float: left;
   margin-left: 15px;
 }
 
@@ -22,4 +19,5 @@ pre {
   font-size: 12px;
   font-family: 'Consolas';
   color: 111;
+  text-align: left;
 }
