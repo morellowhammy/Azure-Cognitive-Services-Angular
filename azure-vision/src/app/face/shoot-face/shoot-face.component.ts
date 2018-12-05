@@ -17,6 +17,8 @@ export class ShootFaceComponent implements OnInit {
 
   public jsonResult: string = null;
 
+  public emojiIcon = String.fromCodePoint(0x1F60A);
+
   constructor(
     private faceService: FaceService,
     private imageProcessorService: ImageProcessorService) { }

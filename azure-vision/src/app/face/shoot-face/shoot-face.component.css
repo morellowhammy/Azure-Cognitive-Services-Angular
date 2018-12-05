@@ -2,11 +2,16 @@
   margin: 0 100px;
 }
 
-.left{
+.left {
   float: left;
 }
 
-.right{
+.json-area {
+  float: left;
+  margin-left: 15px;
+}
+
+.emoji-area {
   float: left;
   margin-left: 15px;
 }
@@ -20,4 +25,11 @@ pre {
   font-family: 'Consolas';
   color: 111;
   text-align: left;
+}
+
+.emoji {
+  color: #000;
+  font-size: 15em;
+  display: inline-block;
+  line-height: 2;
 }

@@ -12,8 +12,11 @@
         <img [src]="webcamImage.imageAsDataUrl"/>
       </div>
     </div>
-    <div class="right" *ngIf="jsonResult">
+    <div class="json-area" *ngIf="jsonResult">
       <pre>{{jsonResult}}</pre>
+    </div>
+    <div class="emoji-area">
+      <span class="emoji">{{emojiIcon}}</span>
     </div>
   </div>
 </div>
