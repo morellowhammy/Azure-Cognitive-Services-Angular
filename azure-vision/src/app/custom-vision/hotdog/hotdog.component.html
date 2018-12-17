@@ -1,3 +1,19 @@
-<p>
-  hotdog works!
-</p>
+<div style="text-align:center">
+  <h3>Hot Dog recognition - Custom Vision Api</h3>
+  <div class="content">
+    <div class="left">
+      <div>
+        <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+        <br/>
+        <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+      </div>
+      <div class="snapshot" *ngIf="webcamImage">
+        <h2>Nice one!</h2>
+        <img class="snapshot-image" [src]="webcamImage.imageAsDataUrl"/>
+      </div>
+    </div>
+    <div class="json-area" *ngIf="jsonResult">
+      <pre>{{jsonResult}}</pre>
+    </div>
+  </div>
+</div>
