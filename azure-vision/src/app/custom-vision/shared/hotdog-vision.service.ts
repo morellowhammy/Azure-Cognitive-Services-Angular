@@ -20,7 +20,7 @@ export class HotdogVisionService {
     this.url = config.uriBase;
     this.headers = new HttpHeaders({
       'Content-Type': 'application/octet-stream',
-      'Ocp-Apim-Subscription-Key': config.subscriptionKey
+      'Prediction-Key': config.subscriptionKey
     });
   }
 

@@ -34,9 +34,9 @@ export class HotdogComponent implements OnInit {
 
     this.imageProcessorService.imageUrltoBlob(webcamImage.imageAsDataUrl).subscribe((image) => {
       this.hotdogVisionService.recognizeHotDog(image).subscribe((response: Array<any>) => {
-        if (response.length) {
+        if (response) {
           console.log(response);
-          this.jsonResult = JSON.stringify(response[0], undefined, 2);
+          this.jsonResult = JSON.stringify(response, undefined, 2);
         } else {
           this.jsonResult = 'NO HOT DOG!!';
         }
