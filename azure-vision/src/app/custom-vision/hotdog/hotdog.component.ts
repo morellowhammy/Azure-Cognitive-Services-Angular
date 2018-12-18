@@ -1,3 +1,4 @@
+import { Prediction } from './../shared/prediction.model';
 import { HotdogVisionService } from './../shared/hotdog-vision.service';
 import { FaceService } from './../../shared/face.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,6 +19,8 @@ export class HotdogComponent implements OnInit {
 
   public jsonResult: string = null;
 
+  public predictionResult: string = null;
+
   constructor(
     private hotdogVisionService: HotdogVisionService,
     private imageProcessorService: ImageProcessorService) { }
@@ -33,12 +36,18 @@ export class HotdogComponent implements OnInit {
     this.webcamImage = webcamImage;
 
     this.imageProcessorService.imageUrltoBlob(webcamImage.imageAsDataUrl).subscribe((image) => {
-      this.hotdogVisionService.recognizeHotDog(image).subscribe((response: Array<any>) => {
-        if (response) {
+      this.hotdogVisionService.recognizeHotDog(image).subscribe((response: any) => {
+        if (response.predictions) {
           console.log(response);
           this.jsonResult = JSON.stringify(response, undefined, 2);
+          const hotdogPrediction = response.predictions.find(x => x.tagName === 'hotdog') as Prediction;
+          if (hotdogPrediction.probability > 0.7) {
+            this.predictionResult = 'IT IS A HOT DOG!!';
+          } else {
+            this.predictionResult = 'IT IS NOT A HOT DOG!!';
+          }
         } else {
-          this.jsonResult = 'NO HOT DOG!!';
+          this.jsonResult = 'NO DATA FROM AZURE!!';
         }
       });
     });
