@@ -6,10 +6,14 @@
         <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
         <br/>
         <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+        <input type="file" accept="image/*" (change)="uploadImage($event)" >
       </div>
       <div class="snapshot" *ngIf="webcamImage">
         <h2>Nice one!</h2>
         <img class="snapshot-image" [src]="webcamImage.imageAsDataUrl"/>
+      </div>
+      <div class="snapshot" *ngIf="fileImage">
+          <img class="snapshot-image" [src]="fileImage"/>
       </div>
     </div>
     <div class="json-area" *ngIf="jsonResult">
