@@ -67,8 +67,6 @@ export class HotdogComponent implements OnInit {
     const reader  = new FileReader();
 
     reader.onload = () => {
-      console.log(reader.result);
-      this.reset();
       this.fileImage = reader.result;
     };
     reader.onerror = (error) => {
@@ -92,5 +90,7 @@ export class HotdogComponent implements OnInit {
     this.fileImage = null;
     this.webcamImage = null;
     this.jsonResult = null;
+    const form = document.getElementById('fileForm');
+    form.reset();
   }
 }

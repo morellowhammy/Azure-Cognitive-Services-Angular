@@ -6,7 +6,9 @@
         <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
         <br/>
         <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-        <input type="file" accept="image/*" (change)="uploadImage($event)" >
+        <form id="fileForm">
+          <input type="file" accept="image/*" (change)="uploadImage($event)" (click)="reset()">
+        </form>
       </div>
       <div class="snapshot" *ngIf="webcamImage">
         <h2>Nice one!</h2>
