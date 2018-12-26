@@ -90,7 +90,7 @@ export class HotdogComponent implements OnInit {
     this.fileImage = null;
     this.webcamImage = null;
     this.jsonResult = null;
-    const form = document.getElementById('fileForm');
+    const form = document.getElementById('fileForm') as any;
     form.reset();
   }
 }

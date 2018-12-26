@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 const config = {
-  subscriptionKey: '9dbe92c1bec549fcac378294ff900b60',
+  subscriptionKey: 'd720eba0c8734262942fecb9d89fa127',
   params: {
       'returnFaceId': 'true',
       'returnFaceLandmarks': 'false',

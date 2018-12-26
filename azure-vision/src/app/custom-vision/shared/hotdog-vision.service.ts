@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 const config = {
-  subscriptionKey: 'ef772681ec5d48fca5cf4c83cd91a3bc',
+  subscriptionKey: '69bd722cb1a648018f203d63ef61c8c3',
   // tslint:disable-next-line:max-line-length
   uriBase: 'https://southcentralus.api.cognitive.microsoft.com/customvision/v2.0/Prediction/69909b15-3b8c-4e6f-b4c4-7aa8caa08639/image?iterationId=973718dd-280f-402b-9367-99c1fd8d6f9b'
 };
