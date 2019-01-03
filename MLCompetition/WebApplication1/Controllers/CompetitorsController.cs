@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Domain;
 
@@ -8,29 +9,30 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class CompetitorsController : ControllerBase
     {
-        private ICompetitorService _competitorService;
+        private readonly ICompetitorService _competitorService;
 
-        private ICompetitorService CompetitorService => _competitorService ?? (this._competitorService = new CompetitorService());
+        public CompetitorsController(ICompetitorService competitorService)
+        {
+            _competitorService = competitorService;
+        }
 
-        // GET api/competitors
         [HttpGet]
         public ActionResult<IEnumerable<Competitor>> Get()
         {
-            return new ActionResult<IEnumerable<Competitor>>(CompetitorService.GetCompetitors());
+            var competitors = _competitorService.GetCompetitors();
+
+            if (competitors.Any())
+            {
+                return Ok(competitors);
+            }
+
+            return NotFound();
         }
 
-        // GET api/competitors/pepe
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/competitors
         [HttpPost]
         public ActionResult Post([FromBody] Competitor competitor)
         {
-            var compt = CompetitorService.AddCompetitor(competitor);
+            var compt = _competitorService.AddCompetitor(competitor);
 
             if (compt == null)
             {
@@ -40,11 +42,10 @@ namespace WebApplication1.Controllers
             return Ok(compt);
         }
 
-        // DELETE api/competitors/pepe
         [HttpDelete("{name}")]
         public ActionResult Delete(string name)
         {
-            CompetitorService.DeleteCompetitor(name);
+            _competitorService.DeleteCompetitor(name);
             return Ok();
         }
     }
