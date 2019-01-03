@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Domain
+﻿namespace MLCompetition.Domain
 {
     public class Competitor
     {

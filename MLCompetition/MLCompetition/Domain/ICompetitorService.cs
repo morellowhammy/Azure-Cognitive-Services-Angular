@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WebApplication1.Domain
+namespace MLCompetition.Domain
 {
     public interface ICompetitorService
     {

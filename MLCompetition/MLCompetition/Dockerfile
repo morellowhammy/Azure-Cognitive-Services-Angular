@@ -8,16 +8,16 @@ EXPOSE 44317
 
 FROM microsoft/dotnet:2.1-sdk-nanoserver-1803 AS build
 WORKDIR /src
-COPY ["WebApplication1/WebApplication1.csproj", "WebApplication1/"]
-RUN dotnet restore "WebApplication1/WebApplication1.csproj"
+COPY ["MLCompetition/MLCompetition.csproj", "MLCompetition/"]
+RUN dotnet restore "MLCompetition/MLCompetition.csproj"
 COPY . .
-WORKDIR "/src/WebApplication1"
-RUN dotnet build "WebApplication1.csproj" -c Release -o /app
+WORKDIR "/src/MLCompetition"
+RUN dotnet build "MLCompetition.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "WebApplication1.csproj" -c Release -o /app
+RUN dotnet publish "MLCompetition.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "WebApplication1.dll"]
+ENTRYPOINT ["dotnet", "MLCompetition.dll"]

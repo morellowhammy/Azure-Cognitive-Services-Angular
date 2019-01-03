@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication1.Controllers
+namespace MLCompetition.Controllers
 {
     [Route("v1/")]
     [ApiController]

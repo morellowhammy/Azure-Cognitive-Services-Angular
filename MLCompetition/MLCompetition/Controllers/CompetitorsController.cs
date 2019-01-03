@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Domain;
+using MLCompetition.Domain;
 
-namespace WebApplication1.Controllers
+namespace MLCompetition.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class CompetitorsController : ControllerBase
     {

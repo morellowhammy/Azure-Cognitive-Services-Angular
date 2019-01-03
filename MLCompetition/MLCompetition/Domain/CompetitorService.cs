@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace WebApplication1.Domain
+namespace MLCompetition.Domain
 {
     public class CompetitorService : ICompetitorService
     {
