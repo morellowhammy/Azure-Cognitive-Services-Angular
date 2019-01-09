@@ -19,7 +19,18 @@ namespace MLCompetition.Domain
 
         public Competitor AddCompetitor(Competitor competitor)
         {
-            _competitors.Add(competitor);
+            var comp = _competitors.FirstOrDefault(x => x.Name == competitor.Name);
+            if (comp == null)
+            {
+                _competitors.Add(competitor);
+            }
+            else
+            {
+                comp.ApiAccessToken = competitor.ApiAccessToken;
+                comp.Email = competitor.Email;
+                comp.Endpoint = competitor.Endpoint;
+            }
+
             return competitor;
         }
 

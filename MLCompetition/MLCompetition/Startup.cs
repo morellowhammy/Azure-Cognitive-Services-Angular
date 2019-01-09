@@ -21,6 +21,7 @@ namespace MLCompetition
         {
             services.AddSingleton(Configuration);
             services.AddSingleton<ICompetitorService, CompetitorService>();
+            services.AddSingleton<IRankingService, RankingService>();
             services.AddLogging();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             

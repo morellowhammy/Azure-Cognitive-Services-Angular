@@ -29,7 +29,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}/v1/values"
+      "launchUrl": "{Scheme}://{ServiceHost}/v1/version"
     }
   }
 }

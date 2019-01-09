@@ -11,9 +11,12 @@ namespace MLCompetition.Controllers
     {
         private readonly ICompetitorService _competitorService;
 
-        public CompetitorsController(ICompetitorService competitorService)
+        private readonly IRankingService _rankingService;
+
+        public CompetitorsController(ICompetitorService competitorService, IRankingService rankingService)
         {
             _competitorService = competitorService;
+            _rankingService = rankingService;
         }
 
         [HttpGet]
@@ -33,6 +36,7 @@ namespace MLCompetition.Controllers
         public ActionResult Post([FromBody] Competitor competitor)
         {
             var compt = _competitorService.AddCompetitor(competitor);
+            _rankingService.Play(competitor);
 
             if (compt == null)
             {
