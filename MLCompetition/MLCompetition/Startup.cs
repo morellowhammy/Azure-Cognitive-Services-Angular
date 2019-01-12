@@ -20,6 +20,7 @@ namespace MLCompetition
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(Configuration);
+            services.AddSingleton<IScoreService, AzureWinePredictor>();
             services.AddSingleton<ICompetitorService, CompetitorService>();
             services.AddSingleton<IRankingService, RankingService>();
             services.AddLogging();

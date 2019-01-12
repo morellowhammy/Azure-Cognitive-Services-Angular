@@ -7,18 +7,17 @@ namespace MLCompetition.Domain
     {
         private readonly IList<Game> _games;
 
-        public RankingService()
+        private readonly IScoreService _scoreService;
+
+        public RankingService(IScoreService scoreService)
         {
             _games = new List<Game>();
+            _scoreService = scoreService;
         }
 
         public void Play(Competitor competitor)
         {
-            // TODO: Iterate through test data
-                // TODO: Call Azure Service
-
-            // TODO: Get Score from previous iteration
-            double score = 10;
+            double score = _scoreService.CalculateScoreAsync(competitor).Result;
 
             // Add game score
             var game = _games.FirstOrDefault(x => x.Name == competitor.Name);
