@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using MLCompetition.Dtos;
+using MLCompetition.Interfaces;
 
 namespace MLCompetition.Domain
 {
@@ -12,6 +14,13 @@ namespace MLCompetition.Domain
         private string _apiAccessToken;
 
         private string _endpoint;
+
+        private readonly IScoreDataService<Wine> _scoreDataService;
+
+        public AzureWinePredictor(IScoreDataService<Wine> scoreDataService)
+        {
+            _scoreDataService = scoreDataService;
+        }
 
         public async Task<double> CalculateScoreAsync(string apiAccessToken, string endpoint)
         {
