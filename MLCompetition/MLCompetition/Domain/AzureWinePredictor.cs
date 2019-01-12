@@ -13,15 +13,10 @@ namespace MLCompetition.Domain
 
         private string _endpoint;
 
-        public double CalculateScore(Competitor competitor)
+        public async Task<double> CalculateScoreAsync(string apiAccessToken, string endpoint)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<double> CalculateScoreAsync(Competitor competitor)
-        {
-            _apiAccessToken = competitor.ApiAccessToken;
-            _endpoint = competitor.Endpoint;
+            _apiAccessToken = apiAccessToken;
+            _endpoint = endpoint;
             return await InvokeRequestResponseService().ConfigureAwait(false);
         }
 

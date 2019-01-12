@@ -4,8 +4,6 @@ namespace MLCompetition.Domain
 {
     public interface IScoreService
     {
-        double CalculateScore(Competitor competitor);
-
-        Task<double> CalculateScoreAsync(Competitor competitor);
+        Task<double> CalculateScoreAsync(string apiAccessToken, string endpoint);
     }
 }
