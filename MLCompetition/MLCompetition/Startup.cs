@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MLCompetition.Domain;
+using MLCompetition.Dtos;
+using MLCompetition.Interfaces;
 
 namespace MLCompetition
 {
@@ -20,6 +22,7 @@ namespace MLCompetition
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(Configuration);
+            services.AddSingleton<IScoreDataService<Wine>, WineDataCsvReader>();
             services.AddSingleton<IScoreService, AzureWinePredictor>();
             services.AddSingleton<ICompetitorService, CompetitorService>();
             services.AddSingleton<IRankingService, RankingService>();

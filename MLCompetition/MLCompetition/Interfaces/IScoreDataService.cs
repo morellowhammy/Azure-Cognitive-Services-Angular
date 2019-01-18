@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace MLCompetition.Interfaces
 {
-    public interface IScoreDataService<T>
+    public interface IScoreDataService<out T>
     {
+        void Init();
         IEnumerable<T> GetData();
     }
 }

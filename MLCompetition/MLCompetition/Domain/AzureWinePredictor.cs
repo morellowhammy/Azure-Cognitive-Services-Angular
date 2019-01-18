@@ -20,6 +20,7 @@ namespace MLCompetition.Domain
         public AzureWinePredictor(IScoreDataService<Wine> scoreDataService)
         {
             _scoreDataService = scoreDataService;
+            _scoreDataService.Init();
         }
 
         public async Task<double> CalculateScoreAsync(string apiAccessToken, string endpoint)
