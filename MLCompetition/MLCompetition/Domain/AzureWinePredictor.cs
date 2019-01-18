@@ -34,56 +34,7 @@ namespace MLCompetition.Domain
         {
             using (var client = new HttpClient())
             {
-                var scoreRequest = new
-                {
-                    Inputs = new Dictionary<string, List<Dictionary<string, string>>>() {
-                        {
-                            "input1",
-                            new List<Dictionary<string, string>>(){new Dictionary<string, string>(){
-                                            {
-                                                "fixed acidity", "1"
-                                            },
-                                            {
-                                                "volatile acidity", "1"
-                                            },
-                                            {
-                                                "citric acid", "1"
-                                            },
-                                            {
-                                                "residual sugar", "1"
-                                            },
-                                            {
-                                                "chlorides", "1"
-                                            },
-                                            {
-                                                "free sulfur dioxide", "1"
-                                            },
-                                            {
-                                                "total sulfur dioxide", "1"
-                                            },
-                                            {
-                                                "density", "1"
-                                            },
-                                            {
-                                                "pH", "1"
-                                            },
-                                            {
-                                                "sulphates", "1"
-                                            },
-                                            {
-                                                "alcohol", "1"
-                                            },
-                                            {
-                                                "quality", "1"
-                                            },
-                                }
-                            }
-                        },
-                    },
-                    GlobalParameters = new Dictionary<string, string>()
-                    {
-                    }
-                };
+                var scoreRequest = GetScoreRequest();
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiAccessToken);
                 client.BaseAddress = new Uri(_endpoint);
@@ -110,6 +61,74 @@ namespace MLCompetition.Domain
 
                 return 10.0;
             }
+        }
+
+        
+
+        private object GetScoreRequest()
+        {
+            var wineList = _scoreDataService.GetData();
+
+
+            var scoreRequest = new
+            {
+                Inputs = new Dictionary<string, List<Dictionary<string, double>>>()
+                {
+                    {
+                        "input1",
+                        new List<Dictionary<string, double>>()
+                        {
+                            ConvertWineToDictionary(wineList.FirstOrDefault())
+                        }
+                    },
+                },
+                GlobalParameters = new Dictionary<string, string>()
+                {
+                }
+            };
+            return scoreRequest;
+        }
+
+        private Dictionary<string, double> ConvertWineToDictionary(Wine wine)
+        {
+            var dictionary = new Dictionary<string, double>()
+            {
+                {
+                    "fixed acidity", wine.FixedAcidity
+                },
+                {
+                    "volatile acidity", wine.VolatileAcidity
+                },
+                {
+                    "citric acid", wine.CitricAcid
+                },
+                {
+                    "residual sugar", wine.ResidualSugar
+                },
+                {
+                    "chlorides", wine.Chlorides
+                },
+                {
+                    "free sulfur dioxide", wine.FreeSulfurDioxide
+                },
+                {
+                    "total sulfur dioxide", wine.TotalSulfurDioxide
+                },
+                {
+                    "density", wine.Density
+                },
+                {
+                    "pH", wine.Ph
+                },
+                {
+                    "sulphates", wine.Sulphates
+                },
+                {
+                    "alcohol", wine.Alcohol
+                }
+            };
+
+            return dictionary;
         }
     }
 }
