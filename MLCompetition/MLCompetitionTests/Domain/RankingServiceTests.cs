@@ -1,6 +1,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MLCompetition.Domain;
+using MLCompetition.Interfaces;
 using Moq;
 
 namespace MLCompetitionTests.Domain

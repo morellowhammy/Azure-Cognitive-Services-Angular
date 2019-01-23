@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MLCompetition.Domain
+namespace MLCompetition.Interfaces
 {
     public interface IScoreService
     {

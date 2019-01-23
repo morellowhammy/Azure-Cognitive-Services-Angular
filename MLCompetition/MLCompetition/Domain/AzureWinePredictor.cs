@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MLCompetition.Dtos;
 using MLCompetition.Interfaces;
@@ -27,14 +28,67 @@ namespace MLCompetition.Domain
         {
             _apiAccessToken = apiAccessToken;
             _endpoint = endpoint;
-            return await InvokeRequestResponseService().ConfigureAwait(false);
+            List<WineEvaluation> wineEvaluationList = new List<WineEvaluation>();
+
+            var wineListToEvaluate = _scoreDataService.GetData().Take(100);
+
+            foreach (var wine in wineListToEvaluate)
+            {
+                var score = await InvokeRequestResponseService(wine).ConfigureAwait(false);
+                wineEvaluationList.Add(new WineEvaluation()
+                {
+                    Wine = wine,
+                    Score = score
+                });
+            }
+
+            double finalScore = CalculateScore3(wineEvaluationList);
+
+            return finalScore;
         }
 
-        private async Task<double> InvokeRequestResponseService()
+        private double CalculateScore1(IList<WineEvaluation> wineEvaluations)
+        {
+            double sum = 0;
+
+            foreach (var wineEv in wineEvaluations)
+            {
+                sum += wineEv.Score / wineEv.Wine.Quality;
+            }
+
+            return wineEvaluations.Any() ? (sum / wineEvaluations.Count) : 10;
+        }
+
+        private double CalculateScore2(IList<WineEvaluation> wineEvaluations)
+        {
+            double sum = 0;
+
+            foreach (var wineEv in wineEvaluations)
+            {
+                sum += Math.Abs(wineEv.Score / wineEv.Wine.Quality - 1) + 1;
+            }
+
+            return wineEvaluations.Any() ? (sum / wineEvaluations.Count) : 10;
+        }
+
+        private double CalculateScore3(IList<WineEvaluation> wineEvaluations)
+        {
+            double sum = 0;
+
+            foreach (var wineEv in wineEvaluations)
+            {
+                sum += Math.Abs(wineEv.Score - wineEv.Wine.Quality) + 1;
+            }
+
+            return wineEvaluations.Any() ? (sum / wineEvaluations.Count) : 10;
+        }
+
+        private async Task<double> InvokeRequestResponseService(Wine wine)
         {
             using (var client = new HttpClient())
             {
-                var scoreRequest = GetScoreRequest();
+                double score = 10.0;
+                var scoreRequest = GetScoreRequest(wine);
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiAccessToken);
                 client.BaseAddress = new Uri(_endpoint);
@@ -44,32 +98,33 @@ namespace MLCompetition.Domain
                 if (response.IsSuccessStatusCode)
                 {
                     string result = await response.Content.ReadAsStringAsync();
+
                     //result = "{\"Results\":{\"output1\":[{\"Scored Labels\":\"1.66655457905257\"}]}}"
-                    Console.WriteLine("Result: {0}", result);
+                    string pattern = @"-?\d+(?:\.\d+)";
+
+                    foreach (Match m in Regex.Matches(result, pattern))
+                    {
+                        score = double.Parse(m.Value, System.Globalization.CultureInfo.InvariantCulture);
+                        Console.WriteLine("'{0}' found at index {1}.", m.Value, m.Index);
+                    }
                 }
                 else
                 {
                     Console.WriteLine($"The request failed with status code: {response.StatusCode}");
-
-                    // Print the headers - they include the requert ID and the timestamp,
-                    // which are useful for debugging the failure
                     Console.WriteLine(response.Headers.ToString());
 
                     string responseContent = await response.Content.ReadAsStringAsync();
                     Console.WriteLine(responseContent);
                 }
 
-                return 10.0;
+                return score;
             }
         }
 
         
 
-        private object GetScoreRequest()
+        private object GetScoreRequest(Wine wine)
         {
-            var wineList = _scoreDataService.GetData();
-
-
             var scoreRequest = new
             {
                 Inputs = new Dictionary<string, List<Dictionary<string, double>>>()
@@ -78,7 +133,7 @@ namespace MLCompetition.Domain
                         "input1",
                         new List<Dictionary<string, double>>()
                         {
-                            ConvertWineToDictionary(wineList.FirstOrDefault())
+                            ConvertWineToDictionary(wine)
                         }
                     },
                 },
