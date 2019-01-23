@@ -18,7 +18,7 @@ namespace MLCompetition.Domain
 
         public void Play(Competitor competitor)
         {
-            double score = _scoreService.CalculateScoreAsync(competitor.ApiAccessToken, competitor.Endpoint).Result;
+            double score = _scoreService.CalculateScoreConcurrent(competitor.ApiAccessToken, competitor.Endpoint).Result;
 
             // Add game score
             var game = _games.FirstOrDefault(x => x.Name == competitor.Name);

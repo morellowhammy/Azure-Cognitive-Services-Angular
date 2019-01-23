@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -47,40 +48,73 @@ namespace MLCompetition.Domain
             return finalScore;
         }
 
-        private double CalculateScore1(IList<WineEvaluation> wineEvaluations)
+        public async Task<double> CalculateScoreConcurrent(string apiAccessToken, string endpoint)
+        {
+            _apiAccessToken = apiAccessToken;
+            _endpoint = endpoint;
+            var wineEvaluationList = new ConcurrentBag<WineEvaluation>();
+
+            var wineListToEvaluate = _scoreDataService.GetData().Take(100);
+
+            await Task.WhenAll(wineListToEvaluate.Select(wine => Task.Run(async () =>
+            {
+                try
+                {
+                    var score = await InvokeRequestResponseService(wine).ConfigureAwait(false);
+                    wineEvaluationList.Add(new WineEvaluation()
+                    {
+                        Wine = wine,
+                        Score = score
+                    });
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Error while calling concurrently to Azure");
+                }
+            })).ToArray()).ConfigureAwait(false);
+
+            double finalScore = CalculateScore3(wineEvaluationList);
+
+            return finalScore;
+        }
+
+        private double CalculateScore1(IEnumerable<WineEvaluation> wineEvaluations)
         {
             double sum = 0;
 
-            foreach (var wineEv in wineEvaluations)
+            var wineEvs = wineEvaluations.ToList();
+            foreach (var wineEv in wineEvs)
             {
                 sum += wineEv.Score / wineEv.Wine.Quality;
             }
 
-            return wineEvaluations.Any() ? (sum / wineEvaluations.Count) : 10;
+            return wineEvs.Any() ? (sum / wineEvs.Count) : 10;
         }
 
-        private double CalculateScore2(IList<WineEvaluation> wineEvaluations)
+        private double CalculateScore2(IEnumerable<WineEvaluation> wineEvaluations)
         {
             double sum = 0;
 
-            foreach (var wineEv in wineEvaluations)
+            var wineEvs = wineEvaluations.ToList();
+            foreach (var wineEv in wineEvs)
             {
                 sum += Math.Abs(wineEv.Score / wineEv.Wine.Quality - 1) + 1;
             }
 
-            return wineEvaluations.Any() ? (sum / wineEvaluations.Count) : 10;
+            return wineEvs.Any() ? (sum / wineEvs.Count) : 10;
         }
 
-        private double CalculateScore3(IList<WineEvaluation> wineEvaluations)
+        private double CalculateScore3(IEnumerable<WineEvaluation> wineEvaluations)
         {
             double sum = 0;
 
-            foreach (var wineEv in wineEvaluations)
+            var wineEvs = wineEvaluations.ToList();
+            foreach (var wineEv in wineEvs)
             {
                 sum += Math.Abs(wineEv.Score - wineEv.Wine.Quality) + 1;
             }
 
-            return wineEvaluations.Any() ? (sum / wineEvaluations.Count) : 10;
+            return wineEvs.Any() ? (sum / wineEvs.Count) : 10;
         }
 
         private async Task<double> InvokeRequestResponseService(Wine wine)
