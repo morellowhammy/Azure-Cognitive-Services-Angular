@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MLCompetition.Interfaces
 {
@@ -6,5 +7,6 @@ namespace MLCompetition.Interfaces
     {
         Task<double> CalculateScoreAsync(string apiAccessToken, string endpoint);
         Task<double> CalculateScoreConcurrent(string apiAccessToken, string endpoint);
+        Task<IEnumerable<string>> ValidateEndpoint(string apiAccessToken, string endpoint);
     }
 }

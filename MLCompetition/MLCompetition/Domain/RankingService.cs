@@ -46,5 +46,10 @@ namespace MLCompetition.Domain
         {
             return _games;
         }
+
+        public IEnumerable<string> Validate(Competitor competitor)
+        {
+            return _scoreService.ValidateEndpoint(competitor.ApiAccessToken, competitor.Endpoint).Result;
+        }
     }
 }

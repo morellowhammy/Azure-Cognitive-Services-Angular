@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using MLCompetition.Domain;
+using MLCompetition.Interfaces;
 
 namespace MLCompetition.Controllers
 {
@@ -36,13 +39,27 @@ namespace MLCompetition.Controllers
         public ActionResult Post([FromBody] Competitor competitor)
         {
             var compt = _competitorService.AddCompetitor(competitor);
-            _rankingService.Play(competitor);
 
             if (compt == null)
             {
                 return NotFound();
             }
 
+            var errors = _rankingService.Validate(competitor);
+            if (errors.Any())
+            {
+                return BadRequest(errors);
+            }
+
+            try
+            {
+                _rankingService.Play(competitor);
+            }
+            catch (Exception e)
+            {
+                return Conflict(e.Message);
+            }
+            
             return Ok(compt);
         }
 

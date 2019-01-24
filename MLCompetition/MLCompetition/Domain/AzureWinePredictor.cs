@@ -19,10 +19,30 @@ namespace MLCompetition.Domain
 
         private readonly IScoreDataService<Wine> _scoreDataService;
 
+        private const int NUMBER_WINES_TO_EVALUATE = 10;
+
         public AzureWinePredictor(IScoreDataService<Wine> scoreDataService)
         {
             _scoreDataService = scoreDataService;
             _scoreDataService.Init();
+        }
+
+        public async Task<IEnumerable<string>> ValidateEndpoint(string apiAccessToken, string endpoint)
+        {
+            _apiAccessToken = apiAccessToken;
+            _endpoint = endpoint;
+            string pattern = @"-?\d+(?:\.\d+)";
+            var errorsList = new List<string>();
+
+            var wine = _scoreDataService.GetData().First();
+            
+            var result = await InvokeRequestResponseService(wine).ConfigureAwait(false);
+
+            if (Regex.Matches(result, pattern).Count > 1)
+            {
+                errorsList.Add("Service response has more than a score value");
+            }
+            return errorsList;
         }
 
         public async Task<double> CalculateScoreAsync(string apiAccessToken, string endpoint)
@@ -35,7 +55,7 @@ namespace MLCompetition.Domain
 
             foreach (var wine in wineListToEvaluate)
             {
-                var score = await InvokeRequestResponseService(wine).ConfigureAwait(false);
+                var score = await GetWineScore(wine).ConfigureAwait(false);
                 wineEvaluationList.Add(new WineEvaluation()
                 {
                     Wine = wine,
@@ -54,13 +74,13 @@ namespace MLCompetition.Domain
             _endpoint = endpoint;
             var wineEvaluationList = new ConcurrentBag<WineEvaluation>();
 
-            var wineListToEvaluate = _scoreDataService.GetData().Take(100);
+            var wineListToEvaluate = _scoreDataService.GetData().Take(NUMBER_WINES_TO_EVALUATE);
 
             await Task.WhenAll(wineListToEvaluate.Select(wine => Task.Run(async () =>
             {
                 try
                 {
-                    var score = await InvokeRequestResponseService(wine).ConfigureAwait(false);
+                    var score = await GetWineScore(wine).ConfigureAwait(false);
                     wineEvaluationList.Add(new WineEvaluation()
                     {
                         Wine = wine,
@@ -117,11 +137,26 @@ namespace MLCompetition.Domain
             return wineEvs.Any() ? (sum / wineEvs.Count) : 10;
         }
 
-        private async Task<double> InvokeRequestResponseService(Wine wine)
+        private async Task<double> GetWineScore(Wine wine)
+        {
+            double score = 10.0;
+            string pattern = @"-?\d+(?:\.\d+)";
+
+            string result = await InvokeRequestResponseService(wine).ConfigureAwait(false);
+            
+            foreach (Match m in Regex.Matches(result, pattern))
+            {
+                score = double.Parse(m.Value, System.Globalization.CultureInfo.InvariantCulture);
+                Console.WriteLine("'{0}' found at index {1}.", m.Value, m.Index);
+            }
+
+            return score;
+        }
+
+        private async Task<string> InvokeRequestResponseService(Wine wine)
         {
             using (var client = new HttpClient())
             {
-                double score = 10.0;
                 var scoreRequest = GetScoreRequest(wine);
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _apiAccessToken);
@@ -131,31 +166,20 @@ namespace MLCompetition.Domain
 
                 if (response.IsSuccessStatusCode)
                 {
-                    string result = await response.Content.ReadAsStringAsync();
-
-                    //result = "{\"Results\":{\"output1\":[{\"Scored Labels\":\"1.66655457905257\"}]}}"
-                    string pattern = @"-?\d+(?:\.\d+)";
-
-                    foreach (Match m in Regex.Matches(result, pattern))
-                    {
-                        score = double.Parse(m.Value, System.Globalization.CultureInfo.InvariantCulture);
-                        Console.WriteLine("'{0}' found at index {1}.", m.Value, m.Index);
-                    }
+                    return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 }
                 else
                 {
                     Console.WriteLine($"The request failed with status code: {response.StatusCode}");
                     Console.WriteLine(response.Headers.ToString());
 
-                    string responseContent = await response.Content.ReadAsStringAsync();
+                    string responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     Console.WriteLine(responseContent);
-                }
 
-                return score;
+                    return responseContent;
+                }
             }
         }
-
-        
 
         private object GetScoreRequest(Wine wine)
         {
