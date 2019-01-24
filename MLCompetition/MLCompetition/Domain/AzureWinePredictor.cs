@@ -40,7 +40,13 @@ namespace MLCompetition.Domain
 
             if (Regex.Matches(result, pattern).Count > 1)
             {
-                errorsList.Add("Service response has more than a score value");
+                errorsList.Add("Service response has more than one score value");
+            }
+            else if(result.Contains("error"))
+            {
+                var regex = new Regex(@".*(data:(?<error>.*)\.)");
+                var error = regex.Match(result).Groups["error"].Value;
+                errorsList.Add(error);
             }
             return errorsList;
         }
