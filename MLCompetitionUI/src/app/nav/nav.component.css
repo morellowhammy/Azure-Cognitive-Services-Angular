@@ -25,3 +25,11 @@
   height: auto;
   padding-right: 10px;
 }
+
+.title {
+  font-size: 22px;
+}
+
+.material-icons {
+  cursor: pointer;
+}

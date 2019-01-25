@@ -4,7 +4,8 @@ import {
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule
+  MatListModule,
+  MatMenuModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 
@@ -15,7 +16,8 @@ import { NgModule } from '@angular/core';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
   exports: [
     MatToolbarModule,
@@ -23,7 +25,8 @@ import { NgModule } from '@angular/core';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ],
 })
 export class MaterialModule { }
