@@ -1,9 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
 <mat-toolbar color="primary">
-  <div>
-    <img class="icon" src="assets/img/ml-icon.png">
-    <span>ML Competition</span>
-  </div>
+  <img class="icon" src="assets/img/ml-icon.png">
+  <span>ML Competition</span>
   <span class="fill-space"></span>
   <div>
     <a mat-button [routerLink]="['/competition']">Register</a>
@@ -14,8 +12,9 @@
 <router-outlet></router-outlet>
 
 <mat-toolbar color="primary">
-  <span>ML Competition</span>
-  <span class="example-fill-remaining-space"></span>
+    <img class="icon" src="assets/img/ml-icon.png">
+    <span>ML Competition</span>
+  <span class="fill-space"></span>
   <button mat-button>Developed by Víctor Escudero</button>
 </mat-toolbar>
 </mat-sidenav-container>
