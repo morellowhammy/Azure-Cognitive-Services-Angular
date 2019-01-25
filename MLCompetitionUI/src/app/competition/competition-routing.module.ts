@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'competition',
-    component: RegistryComponent,
     children: [
       { path: '', component: RegistryComponent },
       { path: 'registry', component: RegistryComponent },
