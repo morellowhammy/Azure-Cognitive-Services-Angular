@@ -9,7 +9,6 @@ import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,11 +23,6 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     BrowserAnimationsModule,
     MaterialModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
