@@ -9,11 +9,34 @@ import { ICompetitor } from 'src/app/shared/competitor.model';
   styleUrls: ['./registry.component.css']
 })
 export class RegistryComponent implements OnInit {
-  competitorFormGroup: FormGroup;
-  name: FormControl;
-  email: FormControl;
-  apiAccessToken: FormControl;
-  endpoint: FormControl;
+  public competitorFormGroup: FormGroup;
+  public name: FormControl;
+  public email: FormControl;
+  public apiAccessToken: FormControl;
+  public endpoint: FormControl;
+
+  public endpointFormat = `
+  {
+    "GlobalParameters": {},
+    "Inputs": {
+        "input1": [
+            {
+                "alcohol": "1",
+                "chlorides": "1",
+                "citric acid": "1",
+                "density": "1",
+                "fixed acidity": "1",
+                "free sulfur dioxide": "1",
+                "pH": "1",
+                "residual sugar": "1",
+                "sulphates": "1",
+                "total sulfur dioxide": "1",
+                "volatile acidity": "1"
+            }
+        ]
+    }
+  }
+  `;
 
   constructor(public competitionService: CompetitionService) { }
 
