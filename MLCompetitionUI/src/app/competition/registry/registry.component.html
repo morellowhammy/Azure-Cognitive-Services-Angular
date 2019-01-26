@@ -3,26 +3,26 @@
 
   <div class="ml-container">
     <div class="ml-left-block">
-        <p>Be sure that your endpoint can receive: <br></p>
-        <pre>json code here</pre>
+      <p>Be sure that your endpoint can receive: <br></p>
+      <pre>json code here</pre>
     </div>
     <div class="ml-right-block">
 
       <div class="form-container">
         <mat-form-field>
-          <input matInput placeholder="Nickname" formControlName="nickname" id="nickname">
+          <input matInput placeholder="Nickname" formControlName="nickname" id="nickname" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email" id="email">
+          <input matInput placeholder="Email" formControlName="email" id="email" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Api Access Token" formControlName="apiAccessToken" id="apiAccessToken">
+          <input matInput placeholder="Api Access Token" formControlName="apiAccessToken" id="apiAccessToken" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Endpoint" formControlName="endpoint" id="endpoint">
+          <input matInput placeholder="Endpoint" formControlName="endpoint" id="endpoint" required>
         </mat-form-field>
         <button type="submit" mat-button color="primary">Enter competition</button>
       </div>
