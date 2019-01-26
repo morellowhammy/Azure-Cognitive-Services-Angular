@@ -2,3 +2,24 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ml-content {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.ml-title {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.ml-container{
+  display: flex;
+}
+
+.ml-left-block{
+  margin-right: 20%;
+}

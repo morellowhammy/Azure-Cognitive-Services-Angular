@@ -1,3 +1,31 @@
-<p>
-  registry works!
-</p>
+<div class="ml-content">
+  <span class="ml-title">Register to the Competition</span>
+
+  <div class="ml-container">
+    <div class="ml-left-block">
+        <p>Be sure that your endpoint can receive: <br></p>
+        <pre>json code here</pre>
+    </div>
+    <div class="ml-right-block">
+      <form>
+          <div>
+            <label for="nickname">Nickname:</label>
+            <input formControlName="nickname" id="nickname" type="text" placeholder="Nickname..." />
+          </div>
+          <div>
+              <label for="email">Email:</label>
+              <input formControlName="email" id="email" type="text" placeholder="Email..." />
+          </div>
+          <div>
+            <label for="apiAccessToken">Api Access Token:</label>
+            <input formControlName="apiAccessToken" id="apiAccessToken" type="text" placeholder="Access Token..." />
+          </div>
+          <div>
+              <label for="lastName">Endpoint:</label>
+              <input formControlName="endpoint" id="endpoint" type="text" placeholder="Endpoint..." />
+            </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+  </div>
+</div>
