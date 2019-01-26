@@ -18,6 +18,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .ml-container{
   display: flex;
+  margin: 20px 0px;
 }
 
 .ml-left-block{
@@ -26,4 +27,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .ml-right-block{
   width: 50%;
+}
+
+.mat-button.mat-primary {
+  background-color: grey;
 }

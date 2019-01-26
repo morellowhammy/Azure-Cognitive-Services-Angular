@@ -9,7 +9,8 @@ import {
   MatInputModule,
   MatRippleModule,
   MatSelectModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTableModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 
@@ -24,7 +25,8 @@ const modules = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatRippleModule
+  MatRippleModule,
+  MatTableModule
 ];
 
 @NgModule({

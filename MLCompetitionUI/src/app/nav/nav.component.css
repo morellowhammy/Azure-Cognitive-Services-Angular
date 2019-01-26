@@ -33,3 +33,9 @@
 .material-icons {
   cursor: pointer;
 }
+
+.mat-toolbar.mat-primary.footer {
+  position: fixed;
+  bottom: 0;
+  top: initial;
+}
