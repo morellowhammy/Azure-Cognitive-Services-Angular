@@ -7,9 +7,10 @@ import {
   MatListModule,
   MatMenuModule,
   MatInputModule,
-  MatRippleModule
+  MatRippleModule,
+  MatSelectModule,
+  MatFormFieldModule
 } from '@angular/material';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgModule } from '@angular/core';
 
 const modules = [
@@ -22,6 +23,7 @@ const modules = [
   MatMenuModule,
   MatFormFieldModule,
   MatInputModule,
+  MatSelectModule,
   MatRippleModule
 ];
 

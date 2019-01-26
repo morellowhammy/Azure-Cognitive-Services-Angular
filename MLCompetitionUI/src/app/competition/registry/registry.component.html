@@ -7,25 +7,26 @@
         <pre>json code here</pre>
     </div>
     <div class="ml-right-block">
-      <form>
-          <div>
-            <label for="nickname">Nickname:</label>
-            <input formControlName="nickname" id="nickname" type="text" placeholder="Nickname..." />
-          </div>
-          <div>
-              <label for="email">Email:</label>
-              <input formControlName="email" id="email" type="text" placeholder="Email..." />
-          </div>
-          <div>
-            <label for="apiAccessToken">Api Access Token:</label>
-            <input formControlName="apiAccessToken" id="apiAccessToken" type="text" placeholder="Access Token..." />
-          </div>
-          <div>
-              <label for="lastName">Endpoint:</label>
-              <input formControlName="endpoint" id="endpoint" type="text" placeholder="Endpoint..." />
-            </div>
-          <button type="submit" class="btn btn-primary">Save</button>
-        </form>
+
+      <div class="form-container">
+        <mat-form-field>
+          <input matInput placeholder="Nickname" formControlName="nickname" id="nickname">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" id="email">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Api Access Token" formControlName="apiAccessToken" id="apiAccessToken">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Endpoint" formControlName="endpoint" id="endpoint">
+        </mat-form-field>
+        <button type="submit" mat-button color="primary">Enter competition</button>
+      </div>
+
     </div>
   </div>
 </div>
