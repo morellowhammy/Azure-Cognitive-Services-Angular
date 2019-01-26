@@ -40,8 +40,9 @@ export class CompetitionService {
     const options = {headers: this.headers};
     this.url = config.uriBase + '/competitors';
 
-    return this.http.post<any>(this.url, competitor, options)
-      .pipe(catchError(this.handleError<ICompetitor>('addCompetitor')));
+    return of(competitor);
+    /*return this.http.post<any>(this.url, competitor, options)
+      .pipe(catchError(this.handleError<ICompetitor>('addCompetitor')));*/
   }
 
   public getRankingsList(): Observable<IRankingRow[]> {

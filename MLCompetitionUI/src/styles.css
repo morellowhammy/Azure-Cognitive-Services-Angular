@@ -36,3 +36,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-toolbar.mat-primary{
   background-image: linear-gradient(to top right, #c2185b , #3b2cbf);
 }
+
+.mat-form-field {
+  margin-top: 20px;
+}

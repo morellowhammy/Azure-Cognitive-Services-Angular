@@ -26,8 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
     CompetitionModule,
     AdminModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
     LayoutModule,
     SharedModule,
   ],
