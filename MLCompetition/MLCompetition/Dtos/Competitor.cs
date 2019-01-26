@@ -1,4 +1,4 @@
-﻿namespace MLCompetition.Domain
+﻿namespace MLCompetition.Dtos
 {
     public class Competitor
     {

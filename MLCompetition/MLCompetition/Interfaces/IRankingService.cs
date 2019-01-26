@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MLCompetition.Domain;
+using MLCompetition.Dtos;
 
 namespace MLCompetition.Interfaces
 {
