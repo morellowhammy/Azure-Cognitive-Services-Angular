@@ -24,8 +24,8 @@ export class RegistryComponent implements OnInit {
       ]
     );
     this.email = new FormControl('', [Validators.required, Validators.email]);
-    this.apiAccessToken = new FormControl();
-    this.endpoint = new FormControl();
+    this.apiAccessToken = new FormControl('', [Validators.required]);
+    this.endpoint = new FormControl('', [Validators.required]);
     this.competitorFormGroup = new FormGroup({
       name: this.name,
       email: this.email,
@@ -34,14 +34,29 @@ export class RegistryComponent implements OnInit {
     });
   }
 
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' : '';
-  }
-
   registerCompetitor(competitor: ICompetitor) {
     this.competitionService.addCompetitor(competitor).subscribe((comp) => {
       console.log('Competitor saved' + comp);
     });
+  }
+
+  getErrorMessage(field: string) {
+    switch (field) {
+      case 'name': {
+        return this.name.hasError('required') ? 'You must enter a value' :
+          this.name.hasError('pattern') ? 'Not a valid name' : '';
+      }
+      case 'email': {
+        return this.email.hasError('required') ? 'You must enter a value' :
+          this.email.hasError('email') ? 'Not a valid email' : '';
+      }
+      case 'apiAccessToken': {
+        return this.apiAccessToken.hasError('required') ? 'You must enter a value' : '';
+      }
+      case 'endpoint': {
+        return this.endpoint.hasError('required') ? 'You must enter a value' : '';
+      }
+      default: return '';
+    }
   }
 }

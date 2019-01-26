@@ -12,19 +12,22 @@
         (ngSubmit)="registerCompetitor(competitorFormGroup.value)">
         <mat-form-field>
           <input matInput placeholder="Name" [formControl]="name" id="name" required>
+          <mat-error *ngIf="name.invalid">{{getErrorMessage('name')}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Email" [formControl]="email" id="email" required>
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-error *ngIf="email.invalid">{{getErrorMessage('email')}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Api Access Token" [formControl]="apiAccessToken" id="apiAccessToken" required>
+          <mat-error *ngIf="apiAccessToken.invalid">{{getErrorMessage('apiAccessToken')}}</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Endpoint" [formControl]="endpoint" id="endpoint" required>
+          <mat-error *ngIf="apiAccessToken.invalid">{{getErrorMessage('endpoint')}}</mat-error>
         </mat-form-field>
         <button type="submit" mat-button color="primary">Enter competition</button>
       </form>
