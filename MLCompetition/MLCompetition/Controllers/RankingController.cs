@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using MLCompetition.Domain;
+using MLCompetition.Dtos;
 using MLCompetition.Interfaces;
 
 namespace MLCompetition.Controllers
