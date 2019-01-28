@@ -3,128 +3,154 @@
 
     <p>In this workshop you'll learn how to create a custom predictive Machine Learning service by using <a href="https://studio.azureml.net/">Azure Machine Learning Studio</a>.</p>
 
-    <p>We'll use this tool to create a ML service that can predict the quality of red wine based on the wines attributes. When you are done with your ML service, copy endpoint and api key over to <a href="http://mlscorer.azurewebsites.net/">Machine Learning Scorer</a> were all scores will be shown in a highscore list.</p>
+    <p>We'll use this tool to create a ML service that can predict the quality of red wine based on the wines attributes.
+       When you are done with your ML service, copy endpoint and api key over to <a [routerLink]="['/competition']">Registry Form</a>
+       and all scores will be shown in <a [routerLink]="['/competition/ranking']">Ranking Page</a>.</p>
 
     <h2 id="stepbystep">Step-by-step</h2>
 
     <h3 id="1createauseronmachinelearningstudio">1. Create a User on Machine Learning Studio</h3>
 
-    <p>Go to <a href="https://studio.azureml.net/">Azure Machine Learning Studio</a> and follow the steps to sign in with your microsoft account.</p>
+    <p>Go to <a href="https://studio.azureml.net/">Azure Machine Learning Studio</a> and follow the steps to sign in with
+      your microsoft account.</p>
 
-    <h3 id="2uploadtheprovideddataset">2. Upload the provided dataset</h3>
+    <h3>2. Upload the provided dataset</h3>
 
-    <p>The dataset that will be used to train the machine learning service is located <a href="https://github.com/bouvet/workshop/tree/master/exercise-3/winequality-red.csv">here</a>,  download it to your computer. (The dataset is located in <em>/exercise-3/winequality-red.csv</em>)</p>
+      <p>The dataset that will be used to train the machine learning service is located <a href="#">here</a>,
+        download it to your computer.</p>
 
-    <p>Next, we're going to upload the dataset to Machine Learning Studio:</p>
+      <p>Next, we're going to upload the dataset to Machine Learning Studio:</p>
 
-    <ol>
-    <li>Go back to Machine Learning Studio, and click on <em>Datasets</em> in the menu to on the right. </li>
+      <ol>
+      <li>Go back to Machine Learning Studio, and click on <em>Datasets</em> in the menu on the left. </li>
 
-    <li>Click <em>New</em> in the bottom right corner and upload the winequality-red.csv file.</li>
-    </ol>
+      <li>Click <em>New</em> in the bottom left corner and upload the winequality-red.csv file.</li>
+      </ol>
 
-    <h3 id="3createanewmachinelearningexperiment">3. Create a new machine learning experiment</h3>
+    <h3>3. Create a new machine learning experiment</h3>
 
-    <p>Your're now ready to create your experiment. </p>
+      <p>Your're now ready to create your experiment. </p>
 
-    <p>In Machine Learning Studio:</p>
+      <p>In Machine Learning Studio:</p>
 
-    <ol>
-    <li>Click <em>Experiments</em> in the menu on the right. </li>
+      <ol>
+      <li>Click <em>Experiments</em> in the menu. </li>
 
-    <li>Click <em>New</em> in the bottom right corner and select <em>Blank Experiment</em>.</li>
+      <li>Click <em>New</em> in the bottom left corner and select <em>Blank Experiment</em>.</li>
 
-    <li>Give the Experiment a name</li>
-    </ol>
+      <li>Give the Experiment a name</li>
+      </ol>
 
-    <h3 id="4insertandpreprocessthedataset">4. Insert and preprocess the dataset</h3>
+    <h3>4. Insert and preprocess the dataset</h3>
 
-    <p>A good machine learning experiment starts with a dataset.
-    Insert the winequality dataset and select which columns to use:</p>
+      <p>A good machine learning experiment starts with a dataset.
+      Insert the winequality dataset and select which columns to use:</p>
 
-    <ol>
-    <li>Drag and drop <em>Saved Datasets</em> -> <em>My Datasets</em> -> <em>winequality-red.csv</em> from the the toolbox to the right out onto the experiment pane.</li>
+      <ol>
+      <li>Drag and drop <em>Saved Datasets</em> &rarr; <em>My Datasets</em> &rarr; <em>winequality-red.csv</em> from
+        the toolbox to the experiment pane.</li>
 
-    <li>Use the <em>Select Columns in Dataset</em> component to reduce the number of fields used in the experiment. Drag it from <em>Data Transformation</em> -> <em>Manipulation</em> -> <em>Select Columns in Dataset</em>. </li>
+      <li>Use the <em>Select Columns in Dataset</em> component to reduce the number of fields used in the experiment.
+        Drag it from <em>Data Transformation</em> &rarr; <em>Manipulation</em> &rarr; <em>Select Columns in Dataset</em>.</li>
 
-    <li>Link dataset with the <em>Select Columns in Dataset</em> component by dragging a line from one to the other.</li>
+      <li>Link dataset with the <em>Select Columns in Dataset</em> component by dragging a line from one to the other.</li>
 
-    <li>Click on the <em>Select Columns in Dataset</em> component and click <em>Launch column selector</em> to select the columns you want to use later in the experiment.</li>
-    </ol>
+      <li>Click on the <em>Select Columns in Dataset</em> component and click <em>Launch column selector</em>
+        to select the columns you want to use later in the experiment.</li>
+      </ol>
 
-    <p>Part of the challenge behind this excercise is to figure which fields to use, it is recommended to retry with different configurations to find the best result.</p>
+      <p>Part of the challenge behind this excercise is to figure which fields to use, it is recommended to retry with
+        different configurations to find the best result.</p>
 
-    <p>Split the dataset into a training set and a test set with the <em>Split Data</em> component.</p>
+      <p>Split the dataset into a training set and a test set with the <em>Split Data</em> component.</p>
 
-    <ol>
-    <li>Drag it onto the experiment pane from <em>Data Transformation</em> -> <em>Sample and Split</em> -> <em>Split Data</em>. Link it up with the <em>Select Columns in Dataset</em>.</li>
+      <ol>
+      <li>Drag it onto the experiment pane from <em>Data Transformation</em> &rarr; <em>Sample and Split
+      </em> &rarr; <em>Split Data</em>. Link it up with the <em>Select Columns in Dataset</em>.</li>
 
-    <li>Click on the <em>Split Data</em> component and set the <em>Fraction of rows in the first output dataset</em> to <em>0.7</em></li>
-    </ol>
+      <li>Click on the <em>Split Data</em> component and set the <em>Fraction of rows in the first output dataset
+      </em> to <em>0.7</em></li>
+      </ol>
 
-    <h3 id="5trainmodelandchoseanalgorithm">5. Train model and chose an algorithm</h3>
+    <h3>5. Train model and chose an algorithm</h3>
 
-    <ol>
-    <li>Drag the <em>Train Model</em> component onto the experiment pane from <em>Machine Learning</em> -> <em>Train</em> -> <em>Train Model</em>. Link it with the <em>Split Data</em> components right output. </li>
+      <ol>
+      <li>Drag the <em>Train Model</em> component onto the experiment pane from <em>Machine Learning
+      </em> &rarr; <em>Train</em> &rarr; <em>Train Model</em>. Link it with the <em>Split Data</em> components right output.</li>
 
-    <li>Select what column you want the model to predict, in this case its <em>quality</em>. Click on the <em>Train Model</em> component and <em>Launch column selector</em> and chose <em>quality</em> as the dependant variable.</li>
-    </ol>
+      <li>Select what column you want the model to predict, in this case its <em>quality</em>. Click on the
+        <em>Train Model</em> component and <em>Launch column selector</em> and chose <em>quality</em>
+        as the dependant variable.</li>
+      </ol>
 
-    <p>It is now time to select the machine learning algorithm. Use the Azure Machine Learning: Algorithm Cheat Sheet to select one. You'll likely have to try mulitple before finding a suitable one. Pro-tip: visualize the dataset by right clicking to see what you are trying to predict.</p>
+      <p>It is now time to select the machine learning algorithm. Use the Azure Machine Learning: Algorithm Cheat Sheet
+        to select one. You'll likely have to try mulitple before finding a suitable one. Pro-tip: visualize the dataset
+        by right clicking to see what you are trying to predict.</p>
 
-    <p><img src="https://acomdpsstorage.blob.core.windows.net/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/machine-learning-algorithm-cheat-sheet/20150618090528/machine-learning-algorithm-cheat-sheet-microsoft-azure.png" alt="alt text" /></p>
+      <p><img src="https://acomdpsstorage.blob.core.windows.net/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/machine-learning-algorithm-cheat-sheet/20150618090528/machine-learning-algorithm-cheat-sheet-microsoft-azure.png" alt="alt text" /></p>
 
-    <ol>
-    <li>Drag the wanted Machine Learning Algorithm from <em>Machine Learning</em> -> <em>Initialize Model</em> -> <em>[Category]</em> -> <em>[Algorithm]</em> onto the experiment pane. The algorithm component should be connected to the <em>Train Model</em> components top right side.</li>
-    </ol>
+      <ol>
+      <li>Drag the wanted Machine Learning Algorithm from <em>Machine Learning</em> &rarr; <em>Initialize Model</em>
+        &rarr; <em>[Category]</em> &rarr; <em>[Algorithm]</em> onto the experiment pane. The algorithm component
+        should be connected to the <em>Train Model</em> components top right side.</li>
+      </ol>
 
-    <h3 id="6scoreandevaluateyourmodel">6. Score and Evaluate your model</h3>
+    <h3>6. Score and Evaluate your model</h3>
 
-    <p>Before running the model add the <em>Score Model</em> and <em>Evaluate Model</em> components to score and evaluate how good your predictive model is.</p>
+      <p>Before running the model add the <em>Score Model</em> and <em>Evaluate Model</em> components to score and evaluate
+        how good your predictive model is.</p>
 
-    <ol>
-    <li><p>Drag the <em>Score Model</em> component from the toolbox located in <em>Machine Learning</em> -> <em>Score</em> -> <em>Score Model</em>. This should be connected to <em>Train Model</em> and the right output of the <em>Split Data</em> component.
-    This component will test your model on data it has not trained on to see how well it can solve the general problem.</p></li>
+      <ol>
+      <li><p>Drag the <em>Score Model</em> component from the toolbox located in <em>Machine Learning</em> &rarr;
+        <em>Score</em> &rarr; <em>Score Model</em>. This should be connected to <em>Train Model</em> and the right
+        output of the <em>Split Data</em> component.
+      This component will test your model on data it has not trained on to see how well it can solve the general problem.</p></li>
 
-    <li><p>Drag the <em>Evaluate Model</em> component from the toolbox located in <em>Machine Learning</em> -> <em>Evaluate</em> -> <em>Evaluate Model</em>. This should be connected to <em>Score Model</em>.</p></li>
-    </ol>
+      <li><p>Drag the <em>Evaluate Model</em> component from the toolbox located in <em>Machine Learning</em> &rarr;
+        <em>Evaluate</em> &rarr; <em>Evaluate Model</em>. This should be connected to <em>Score Model</em>.</p></li>
+      </ol>
 
-    <h3 id="7runtheexperiment">7. Run the experiment</h3>
+    <h3>7. Run the experiment</h3>
 
-    <p>You are now ready to run the experiment. Click on <em>Run</em> in the bottom center and wait while your experiment is training. When finished you can inspect the results by visualizing the <em>Score Model</em> and <em>Evaluate Model</em> components.</p>
+      <p>You are now ready to run the experiment. Click on <em>Run</em> in the bottom center and wait while your
+        experiment is training. When finished you can inspect the results by visualizing the <em>Score Model</em>
+        and <em>Evaluate Model</em> components.</p>
 
-    <h3 id="8publishyourmodel">8. Publish your model</h3>
+    <h3>8. Publish your model</h3>
 
-    <p>When you are pleased with the results, publish the predictive model as a web service service by clicking <em>Set up Web Service</em> in the bottom center. (You can use the same bottom to update the service later)</p>
+      <p>When you are pleased with the results, publish the predictive model as a web service service by clicking
+        <em>Set up Web Service</em> in the bottom center. (You can use the same bottom to update the service later)</p>
 
-    <p>After clicking you'll notice that the experiment pane changed, and you have to run the experiment again before you can click *Deploy Web Service".</p>
+      <p>After clicking you'll notice that the experiment pane changed, and you have to run the experiment again
+        before you can click *Deploy Web Service".</p>
 
-    <h3 id="9submityourmodeltomlscorer">9. Submit your model to MLScorer</h3>
+    <h3>9. Register your model in the ML Competition</h3>
 
-    <p>After the experiment is deployed. Navigate to <em>Web Serices</em> on the right menu.</p>
+      <p>After the experiment is deployed. Navigate to <em>Web Serices</em> on the right menu.</p>
 
-    <ol>
-    <li>Find your predictive experiement and click it.</li>
+      <ol>
+      <li>Find your predictive experiement and click it.</li>
 
-    <li>Click on <em>Test Preview</em> -> <em>Consume</em></li>
+      <li>Click on <em>Test Preview</em> &rarr; <em>Consume</em></li>
 
-    <li>Copy the Primary Key and Request-Response values and paste them in the <a href="http://mlscorer.azurewebsites.net/enter">mlscorer</a>, fill out the rest of the fields and enter the competition.</li>
+      <li>Copy the Primary Key and Request-Response values and paste them in the <a [routerLink]="['/competition']">Registry</a>,
+        fill out the rest of the fields and enter the competition.</li>
 
-    <li>See <a href="http://mlscorer.azurewebsites.net/enter">highscores</a> to see how you scored.</li>
-    </ol>
+      <li>Click <a [routerLink]="['/competition/ranking']">Ranking</a> to see how your position.</li>
+      </ol>
 
-    <p><img src="https://github.com/bouvet/workshop/blob/master/exercise-3/mlscorer-copy-paste.png?raw=true" alt="alt text" /></p>
+      <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvtuQ0GzdLRKQWMqZ1rnXyFqUFBabGaopoJrthJZieDyL08SUsXQ"/></p>
 
-    <h3 id="10retryandimproveyourscore">10. Retry and improve your score</h3>
+    <h3>10. Retry and improve your score</h3>
 
-    <p>You can update your model, redeploy it and enter the MLScorer as many times as you like.
-    Feel free to utilize more or different components while experimenting. How good can you get your prediction?</p>
+      <p>You can update your model, redeploy it and enter the MLScorer as many times as you like.
+      Feel free to utilize more or different components while experimenting. How good can you get your prediction?</p>
 
-    <h2 id="completedexperiment">Completed Experiment</h2>
+    <h2>Completed Experiment</h2>
 
-    <p>By following the step-by-step, your experiment should end up looking something like this:</p>
+      <p>By following the step-by-step, your experiment should end up looking something like this:</p>
 
-    <p><img src="https://github.com/bouvet/workshop/blob/master/exercise-3/ml-wine.PNG?raw=true" alt="alt text" />
-    Your experiment should end up looking something like this</p>
+      <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvtuQ0GzdLRKQWMqZ1rnXyFqUFBabGaopoJrthJZieDyL08SUsXQ"/>
+      Your experiment should end up looking something like this</p>
 
 </div>
