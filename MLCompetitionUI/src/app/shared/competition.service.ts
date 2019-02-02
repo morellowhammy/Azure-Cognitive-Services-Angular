@@ -60,12 +60,8 @@ export class CompetitionService {
 
   public getVersion(): Observable<string> {
     this.url = config.uriBase + '/version';
-    const options = {
-      headers: this.textHeaders,
-      responseType: 'text'
-    };
 
-    return this.http.get<string>(this.url, options)
+    return this.http.get(this.url, { responseType: 'text' })
       .pipe(catchError(this.handleError<string>('getConnectors')));
   }
 
