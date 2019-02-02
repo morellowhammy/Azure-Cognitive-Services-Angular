@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { ICompetitor } from './competitor.model';
 import { IRankingRow } from './ranking-row.model';
+import { ToastrService } from 'ngx-toastr';
 
 const config = {
   uriBase: 'https://172.22.197.20/v1'
@@ -31,7 +32,10 @@ export class CompetitionService {
   private textHeaders;
   private jsonHeaders;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService
+    ) {
     this.textHeaders = new HttpHeaders({
       'Content-Type': 'text/plain'
     });
@@ -67,7 +71,10 @@ export class CompetitionService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+
+      if (error.error && error.error.length > 0) {
+        this.toastr.error(error.error[0]);
+      }
       return of(result as T);
     };
   }

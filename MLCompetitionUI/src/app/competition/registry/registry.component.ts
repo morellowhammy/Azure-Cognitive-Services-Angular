@@ -2,6 +2,7 @@ import { CompetitionService } from './../../shared/competition.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ICompetitor } from 'src/app/shared/competitor.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registry',
@@ -38,7 +39,8 @@ export class RegistryComponent implements OnInit {
   }
   `;
 
-  constructor(public competitionService: CompetitionService) { }
+  constructor(public competitionService: CompetitionService,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.name = new FormControl('', [
@@ -58,9 +60,15 @@ export class RegistryComponent implements OnInit {
   }
 
   registerCompetitor(competitor: ICompetitor) {
-    this.competitionService.addCompetitor(competitor).subscribe((comp) => {
-      console.log('Competitor saved' + comp);
-    });
+    if (this.competitorFormGroup.valid) {
+      this.competitionService.addCompetitor(competitor).subscribe((comp: ICompetitor) => {
+        if (comp) {
+          this.toastr.success(comp.Name + 'has completed the registration!');
+        }
+      });
+    } else {
+      this.toastr.error('There are some errors in the form');
+    }
   }
 
   getErrorMessage(field: string) {
