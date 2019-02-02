@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using MLCompetition.Domain;
 using MLCompetition.Dtos;
 using MLCompetition.Interfaces;
 
@@ -22,7 +20,7 @@ namespace MLCompetition.Controllers
         {
             var ranking = _rankingService.GetRanking();
 
-            if (ranking.Any())
+            if (ranking!=null)
             {
                 return Ok(ranking);
             }

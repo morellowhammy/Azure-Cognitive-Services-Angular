@@ -27,8 +27,15 @@ namespace MLCompetition
             services.AddSingleton<ICompetitorService, CompetitorService>();
             services.AddSingleton<IRankingService, RankingService>();
             services.AddLogging();
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +51,8 @@ namespace MLCompetition
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("MyPolicy");
+
             app.UseMvc();
         }
     }
