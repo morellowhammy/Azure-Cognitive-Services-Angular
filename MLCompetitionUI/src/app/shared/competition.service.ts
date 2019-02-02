@@ -6,7 +6,7 @@ import { ICompetitor } from './competitor.model';
 import { IRankingRow } from './ranking-row.model';
 
 const config = {
-  uriBase: 'https://172.22.195.238/v1'
+  uriBase: 'https://172.22.197.20/v1'
 };
 
 const ELEMENT_DATA: IRankingRow[] = [
@@ -28,31 +28,45 @@ const ELEMENT_DATA: IRankingRow[] = [
 export class CompetitionService {
 
   private url;
-  private headers;
+  private textHeaders;
+  private jsonHeaders;
 
   constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+    this.textHeaders = new HttpHeaders({
+      'Content-Type': 'text/plain'
+    });
+
+    this.jsonHeaders = new HttpHeaders({
+      'Content-Type': 'application/json'
     });
   }
 
   public addCompetitor(competitor: ICompetitor): Observable<ICompetitor> {
-    const options = {headers: this.headers};
+    const options = {headers: this.jsonHeaders};
     this.url = config.uriBase + '/competitors';
 
-    return of(competitor);
-    /*return this.http.post<any>(this.url, competitor, options)
-      .pipe(catchError(this.handleError<ICompetitor>('addCompetitor')));*/
+    return this.http.post<ICompetitor>(this.url, competitor, options)
+      .pipe(catchError(this.handleError<ICompetitor>('addCompetitor')));
   }
 
   public getRankingsList(): Observable<IRankingRow[]> {
     this.url = config.uriBase + '/ranking';
+    const options = { headers: this.jsonHeaders };
 
-    return of(ELEMENT_DATA as IRankingRow[]);
+    // return of(ELEMENT_DATA as IRankingRow[]);
+    return this.http.get<IRankingRow[]>(this.url, options)
+      .pipe(catchError(this.handleError<IRankingRow[]>('getRankingsList', [])));
+  }
 
-    /*return this.http.get<IRankingRow[]>(this.url)
-      .pipe(catchError(this.handleError<IRankingRow[]>('getRankingsList', [])));*/
+  public getVersion(): Observable<string> {
+    this.url = config.uriBase + '/version';
+    const options = {
+      headers: this.textHeaders,
+      responseType: 'text'
+    };
 
+    return this.http.get<string>(this.url, options)
+      .pipe(catchError(this.handleError<string>('getConnectors')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
