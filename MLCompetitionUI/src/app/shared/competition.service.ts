@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { ICompetitor } from './competitor.model';
 import { IRankingRow } from './ranking-row.model';
@@ -72,7 +72,9 @@ export class CompetitionService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      if (error.error && error.error.length > 0) {
+      if (error instanceof HttpErrorResponse) {
+        this.toastr.error(error.name + ': ' + error.message);
+      } else if (error.error && error.error.length > 0) {
         error.error.forEach(errorMessage => {
           this.toastr.error(errorMessage);
         });

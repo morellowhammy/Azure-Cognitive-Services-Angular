@@ -74,6 +74,7 @@ export class RegistryComponent implements OnInit {
           this.router.navigate(['competition/ranking']);
         }
       },
+      () => this.blockUI.stop(),
       () => this.blockUI.stop());
     } else {
       this.blockUI.stop();
