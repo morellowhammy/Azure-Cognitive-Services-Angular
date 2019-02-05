@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using MLCompetition.Domain;
+using MLCompetition.Dtos;
 using MLCompetition.Interfaces;
 
 namespace MLCompetition.Controllers

@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif, Roboto, "Helvetica Neue";
+}
+
+a {
+  color: deeppink;
+}
+
+.ml-content {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-bottom: 60px;
+}
+
+.ml-title {
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.ml-container{
+  display: flex;
+  margin: 20px 0px;
+}
+
+.ml-left-block{
+  margin-right: 20%;
+}
+
+.ml-right-block{
+  width: 50%;
+}
+
+.mat-button.mat-primary {
+  background-color: grey;
+}
+
+.mat-toolbar.mat-primary{
+  background-image: linear-gradient(to top right, #c2185b , #3b2cbf);
+}
+
+.mat-form-field {
+  margin-top: 20px;
+}
