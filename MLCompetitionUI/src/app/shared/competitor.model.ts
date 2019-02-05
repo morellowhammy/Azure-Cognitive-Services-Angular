@@ -1,6 +1,6 @@
 export interface ICompetitor {
-  Name: string;
-  Email: string;
-  ApiAccessToken: string;
-  Endpoint: string;
+  name: string;
+  email: string;
+  apiAccessToken: string;
+  endpoint: string;
 }

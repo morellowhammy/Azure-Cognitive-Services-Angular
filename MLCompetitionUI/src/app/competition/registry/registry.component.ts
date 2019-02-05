@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ICompetitor } from 'src/app/shared/competitor.model';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registry',
@@ -39,7 +40,9 @@ export class RegistryComponent implements OnInit {
   }
   `;
 
-  constructor(public competitionService: CompetitionService,
+  constructor(
+    private competitionService: CompetitionService,
+    private router: Router,
     private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -63,7 +66,8 @@ export class RegistryComponent implements OnInit {
     if (this.competitorFormGroup.valid) {
       this.competitionService.addCompetitor(competitor).subscribe((comp: ICompetitor) => {
         if (comp) {
-          this.toastr.success(comp.Name + 'has completed the registration!');
+          this.toastr.success(comp.name + ' has completed the registration!');
+          this.router.navigate(['competition/ranking']);
         }
       });
     } else {
