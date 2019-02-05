@@ -23,8 +23,23 @@ export class RankingComponent implements OnInit {
     });
 
     this.competitionService.getRankingsList().subscribe( (rankingRows) => {
-      this.rankingRows = rankingRows;
+      this.rankingRows = this.sortRankingList(rankingRows);
     });
+  }
+
+  private sortRankingList(rankingRows: IRankingRow[]): IRankingRow[] {
+    rankingRows.sort((row1, row2) => this.compareRankingRows(row1, row2));
+
+      let position = 1;
+      rankingRows.forEach((row) => {
+        row.position = position;
+        position++;
+      });
+      return rankingRows;
+  }
+
+  private compareRankingRows(ranking1: IRankingRow, ranking2: IRankingRow) {
+    return ranking1.score - ranking2.score;
   }
 
 }
