@@ -4,6 +4,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ICompetitor } from 'src/app/shared/competitor.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
   selector: 'app-registry',
@@ -40,6 +41,8 @@ export class RegistryComponent implements OnInit {
   }
   `;
 
+  @BlockUI() private blockUI: NgBlockUI;
+
   constructor(
     private competitionService: CompetitionService,
     private router: Router,
@@ -64,13 +67,16 @@ export class RegistryComponent implements OnInit {
 
   registerCompetitor(competitor: ICompetitor) {
     if (this.competitorFormGroup.valid) {
+      this.blockUI.start('Registering competitor...');
       this.competitionService.addCompetitor(competitor).subscribe((comp: ICompetitor) => {
         if (comp) {
           this.toastr.success(comp.name + ' has completed the registration!');
           this.router.navigate(['competition/ranking']);
         }
-      });
+      },
+      () => this.blockUI.stop());
     } else {
+      this.blockUI.stop();
       this.toastr.error('There are some errors in the form');
     }
   }
