@@ -12,7 +12,6 @@ export class RankingComponent implements OnInit {
 
   public displayedColumns: string[];
   public rankingRows: IRankingRow[];
-  public version: string;
 
   @BlockUI() private blockUI: NgBlockUI;
 
@@ -21,10 +20,6 @@ export class RankingComponent implements OnInit {
   ngOnInit() {
     this.displayedColumns = ['position', 'name', 'score', 'attempts'];
     this.blockUI.start('Loading Rankings...');
-
-    this.competitionService.getVersion().subscribe((version) => {
-      this.version = version;
-    });
 
     this.competitionService.getRankingsList().subscribe( (rankingRows) => {
       this.rankingRows = this.sortRankingList(rankingRows);
