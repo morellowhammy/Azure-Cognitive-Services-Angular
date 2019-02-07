@@ -7,7 +7,7 @@ import { IRankingRow } from './ranking-row.model';
 import { ToastrService } from 'ngx-toastr';
 
 const config = {
-  uriBase: 'https://172.22.202.23/v1'
+  uriBase: 'https://172.22.192.184/v1'
 };
 
 const ELEMENT_DATA: IRankingRow[] = [
@@ -89,7 +89,11 @@ export class CompetitionService {
     return (error: any): Observable<T> => {
 
       if (error instanceof HttpErrorResponse) {
-        this.toastr.error(error.name + ': ' + error.message);
+        if (error.status === 200) {
+          this.toastr.success(error.error.text);
+        } else {
+          this.toastr.error(error.name + ': ' + error.message);
+        }
       } else if (error.error && error.error.length > 0) {
         error.error.forEach(errorMessage => {
           this.toastr.error(errorMessage);
