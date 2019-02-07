@@ -7,7 +7,7 @@ import { IRankingRow } from './ranking-row.model';
 import { ToastrService } from 'ngx-toastr';
 
 const config = {
-  uriBase: 'https://172.22.205.146/v1'
+  uriBase: 'https://172.22.202.23/v1'
 };
 
 const ELEMENT_DATA: IRankingRow[] = [
@@ -45,12 +45,28 @@ export class CompetitionService {
     });
   }
 
+  public getCompetitorsList(): Observable<ICompetitor[]> {
+    this.url = config.uriBase + '/competitors';
+    const options = { headers: this.jsonHeaders };
+
+    return this.http.get<ICompetitor[]>(this.url, options)
+      .pipe(catchError(this.handleError<ICompetitor[]>('getCompetitorsList', [])));
+  }
+
   public addCompetitor(competitor: ICompetitor): Observable<ICompetitor> {
     const options = {headers: this.jsonHeaders};
     this.url = config.uriBase + '/competitors';
 
     return this.http.post<ICompetitor>(this.url, competitor, options)
       .pipe(catchError(this.handleError<ICompetitor>('addCompetitor')));
+  }
+
+  public deleteCompetitor(competitorName: string): Observable<string> {
+    const options = {headers: this.jsonHeaders};
+    this.url = config.uriBase + '/competitors';
+
+    return this.http.delete<string>(this.url + '/' + competitorName, options)
+      .pipe(catchError(this.handleError<string>('deleteCompetitor')));
   }
 
   public getRankingsList(): Observable<IRankingRow[]> {

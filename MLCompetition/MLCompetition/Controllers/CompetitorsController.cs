@@ -32,7 +32,7 @@ namespace MLCompetition.Controllers
                 return Ok(competitors);
             }
 
-            return NotFound();
+            return NoContent();
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace MLCompetition.Controllers
 
             if (compt == null)
             {
-                return NotFound();
+                return NoContent();
             }
 
             var errors = _rankingService.Validate(competitor);
