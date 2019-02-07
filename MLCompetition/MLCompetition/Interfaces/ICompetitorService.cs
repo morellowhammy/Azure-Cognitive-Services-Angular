@@ -7,6 +7,6 @@ namespace MLCompetition.Domain
     {
         IEnumerable<Competitor> GetCompetitors();
         Competitor AddCompetitor(Competitor competitor);
-        void DeleteCompetitor(string name);
+        bool DeleteCompetitor(string name);
     }
 }

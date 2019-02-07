@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using MLCompetition.Domain;
 using MLCompetition.Dtos;
@@ -67,8 +66,14 @@ namespace MLCompetition.Controllers
         [HttpDelete("{name}")]
         public ActionResult Delete(string name)
         {
-            _competitorService.DeleteCompetitor(name);
-            return Ok();
+            var removedFromCompetitors = _competitorService.DeleteCompetitor(name);
+            var removedFromRanking = _rankingService.DeleteCompetitor(name);
+            if (removedFromRanking && removedFromCompetitors)
+            {
+                return Ok("Removed successfully");
+            }
+
+            return Conflict("Something went wrong");
         }
     }
 }
