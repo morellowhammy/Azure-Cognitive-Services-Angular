@@ -38,17 +38,17 @@ namespace MLCompetition.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Competitor competitor)
         {
+            var errors = _rankingService.Validate(competitor);
+            if (errors.Any())
+            {
+                return BadRequest(errors);
+            }
+
             var compt = _competitorService.AddCompetitor(competitor);
 
             if (compt == null)
             {
                 return NoContent();
-            }
-
-            var errors = _rankingService.Validate(competitor);
-            if (errors.Any())
-            {
-                return BadRequest(errors);
             }
 
             try
