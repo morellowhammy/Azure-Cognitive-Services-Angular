@@ -45,4 +45,8 @@ export class EmojiService {
     }
     return this.unknown;
   }
+
+  public getDefaultEmoji() {
+    return this.unknown;
+  }
 }

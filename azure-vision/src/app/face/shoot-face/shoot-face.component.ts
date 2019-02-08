@@ -26,6 +26,7 @@ export class ShootFaceComponent implements OnInit {
     private emojiService: EmojiService) { }
 
   ngOnInit() {
+    this.emojiIcon = this.emojiService.getDefaultEmoji();
   }
 
   public triggerSnapshot(): void {
