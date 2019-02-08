@@ -57,7 +57,7 @@ namespace MLCompetition.Domain
             _endpoint = endpoint;
             List<WineEvaluation> wineEvaluationList = new List<WineEvaluation>();
 
-            var wineListToEvaluate = _scoreDataService.GetData().Take(100);
+            var wineListToEvaluate = _scoreDataService.GetData().Take(NUMBER_WINES_TO_EVALUATE);
 
             foreach (var wine in wineListToEvaluate)
             {
