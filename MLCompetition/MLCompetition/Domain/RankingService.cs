@@ -52,5 +52,11 @@ namespace MLCompetition.Domain
         {
             return _scoreService.ValidateEndpoint(competitor.ApiAccessToken, competitor.Endpoint).Result;
         }
+
+        public bool DeleteCompetitor(string name)
+        {
+            var item = _games.Single(x => x.Name == name);
+            return item != null && _games.Remove(item);
+        }
     }
 }

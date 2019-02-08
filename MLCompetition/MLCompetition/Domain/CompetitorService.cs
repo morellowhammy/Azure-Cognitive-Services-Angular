@@ -35,13 +35,10 @@ namespace MLCompetition.Domain
             return competitor;
         }
 
-        public void DeleteCompetitor(string name)
+        public bool DeleteCompetitor(string name)
         {
             var itemToRemove = _competitors.Single(x => x.Name == name);
-            if (itemToRemove != null)
-            {
-                _competitors.Remove(itemToRemove);
-            }
+            return itemToRemove != null && _competitors.Remove(itemToRemove);
         }
     }
 }

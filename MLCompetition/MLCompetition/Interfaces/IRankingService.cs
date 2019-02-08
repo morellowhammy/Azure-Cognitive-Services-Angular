@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MLCompetition.Domain;
 using MLCompetition.Dtos;
 
 namespace MLCompetition.Interfaces
@@ -10,5 +9,7 @@ namespace MLCompetition.Interfaces
         IEnumerable<Game> GetRanking();
 
         IEnumerable<string> Validate(Competitor competitor);
+
+        bool DeleteCompetitor(string name);
     }
 }
