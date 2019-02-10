@@ -1,3 +1,94 @@
-<p>
-  custom-vision-exercise works!
-</p>
+<div class="ml-content">
+  <h1>Exercise 2: Custom Vision - Object Detection</h1>
+
+  <p>In this exercise we'll look at the <a href="https://www.customvision.ai">custom vision service</a>. You'll use this service to create a copy of the famous "Hotdog or Not" app.</p>
+
+  <h2 id="1registration">1. Registration</h2>
+
+  <p>First, navigate to the <a href="https://www.customvision.ai">custom vision website</a> and create a user. </p>
+
+  <h2 id="2createcustomvisionproject">2. Create Custom Vision project</h2>
+
+  <p>Before we can start training our classifier, we need to create a project in the Custom Vision portal.</p>
+
+  <ul>
+  <li>Open a browser and navigate to the Custom Vision (customvision.ai) portal.</li>
+
+  <li>Log in using a valid account (learn more above).</li>
+
+  <li>If this is your first time visiting the portal, it will request some permissions. Click the Yes button to agree (you can revoke these permissions later if necessary).</li>
+
+  <li>If this is your first time visiting the portal, it will also prompt you to agree with the terms and conditions. Check the box to indicate consent and then click the I agree button.</li>
+
+  <li>Click New Project.</li>
+
+  <li>Provide the required values:</li>
+  </ul>
+
+  <p>Name: hotdogLab <br />
+  Description: Custom Hotdog Lab <br />
+  Domains: Food</p>
+
+  <ul>
+  <li>Click Create Project.</li>
+  </ul>
+
+  <h2 id="3uploadandtrain">3. Upload and train</h2>
+
+  <p>Now we are ready to train our custom vision service.</p>
+
+  <ul>
+  <li>Click on the newly created project in customvision.ai</li>
+
+  <li>Now, click <em>Add Images</em> and select all images in the provided <em>exercise-2/train_img</em> folder and tag the images as hotdog.</li>
+
+  <li>When completed, click on <em>Train</em> up in the right corner.</li>
+
+  <li>Wait for the training to complete.</li>
+  </ul>
+
+  <h2 id="4testthepredictivemodel">4. Test the predictive model</h2>
+
+  <p>You have now created your very own machine learning model for predicting if an image is a hotdog or not.</p>
+
+  <ul>
+  <li>Test the service by clicking <em>Quick Test</em> and upload a hotdog image you find on google or have laying around (preferably one not in your training data). Also try with an image of something else. Notice how the Probability changes.</li>
+  </ul>
+
+  <h2 id="5nodejsapplication">5. Node.js Application</h2>
+
+  <p>You're now ready to connect the custom vision service with the provided Node.js application.</p>
+
+  <ul>
+  <li>Go to the <em>Performance Tab</em> -> <em>Predict URL</em> and copy url and Prediction-Key form the <em>If you have an image file</em> section.</li>
+
+  <li>Paste these in <em>exercise-2/app/vision-api.config.js</em></li>
+  </ul>
+
+  <p>The config file should look like should look like: </p>
+<!--
+  <pre><code class="javascript language-javascript">export const config = {
+      predictionKey: '&lt;Prediction-Key&gt;',
+      uriBase: "&lt;url&gt;"
+  };
+  </code></pre>
+
+  <p>To run the aplication:</p>
+
+  <ul>
+  <li>Navigate to the <code>exercise-2/app</code> folder in a terminal and type <code>npm run dev</code>: </li>
+  </ul>
+
+  <pre><code class="console language-console">foo@bar /w/e/app:~$ npm run dev
+  </code></pre>
+
+  <p>This should install the required packages and run the web site on localhost:9000.</p>
+
+  <h2 id="6code">6. Code</h2>
+
+  <p>Fix the code so it returns hotdog when images of hotdogs are uploaded and not hotdog when images of everything else is provided.</p>
+
+  <p>Your code goes in <em>exercise-2/app/vision-api-result.js</em></p>
+
+  <p>Good luck!</p>-->
+</div>

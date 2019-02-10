@@ -1,3 +1,104 @@
-<p>
-  face-exercise works!
-</p>
+<div class="ml-content">
+  <h1>Exercise 1: Cognitive Services - Face API</h1>
+
+  <p>In this first part of the workshop we will be looking into Microsoft Cognitive Services. First of, we will be using the Face API, where we will post an image of a person to a REST-api and get back a result containing information related to the persons emotions, as perceived by the AI.</p>
+
+  <p><em>Notice</em>: This exercise requires node >= 6.9 and npm. If you don't have this already installed. Download and install it first <a href="https://nodejs.org/en/download/">node and npm</a>.</p>
+
+  <h2 id="objectives">Objectives</h2>
+
+  <ol>
+    <li>Obtain your Face API Key</li>
+    <li>Take a selfie and handle the result, displaying the <em>emoji</em> that best reflects
+      the emotion returned by the Face API (<em>e.g. angry emoji for</em> <code>anger</code>)</li>
+  </ol>
+
+  <h2>1. Setup</h2>
+
+  <p>First navigate to the <code>/exercise-1</code> folder.
+  Before we start, you need to get hold of an API Key.</p>
+
+  <ul>
+  <li>Got to https://azure.microsoft.com/nb-no/try/cognitive-services/</li>
+
+  <li>Select Face APIs and click the Get API Key button</li>
+
+  <li>Agree to the terms and click next</li>
+
+  <li>If prompted, sign in with your account</li>
+
+  <li>A popup will welcome you and let you know you have 7 days to try out the Face APIs for free</li>
+
+  <li>Click the "Got it" button</li>
+
+  <li>You should now be presented with 2 keys and a URL. Copy one of the keys and paste it into the <code>src/face-api.config.js</code> file in the NodeJS source folder, replacing the <code>'&lt;Subscription Key&gt;'</code> string.</li>
+
+  <li>Copy the URL and paste it into <code>src/face-api.config.js</code>, replacing <code>'&lt;url&gt;'</code></li>
+  </ul>
+<!--
+  <p>It should look something like this:</p>
+
+  <pre>export const config = {
+      subscriptionKey: '&lt;Subscription Key&gt;',
+      ..
+      uriBase: '&lt;url&gt;'
+  };
+  </pre>
+
+  <p>Now that you have configured your API key we are ready to try out some artificial intelligence.</p>
+
+  <h2 id="2runtheapplication">2. Run the application.</h2>
+
+  <ul>
+  <li>Navigate to the <code>exercise-1/app</code> folder in a terminal and type <code>npm run dev</code>: </li>
+  </ul>
+
+  <pre><code class="console language-console">foo@bar /w/e/app:~$ npm run dev
+  </code></pre>
+
+  <p>This should install the required packages and run the web site on localhost:9000.</p>
+
+  <h2 id="3testtheapplication">3. Test the application</h2>
+
+  <ul>
+  <li>Open your favorite browser and navigate to <a href="http://localhost:9000/">the application</a>.</li>
+
+  <li>Allow the site to use web camera.</li>
+
+  <li>Capture a selfie and watch the results</li>
+  </ul>
+
+  <h2 id="4code">4. Code</h2>
+
+  <p>The boilerplate code takes a selfie and sends it to microsoft cognitive services, which returns a json result. The result looks like this:</p>
+
+  <pre><code class="javascript language-javascript">[
+    {
+      "faceId": "c9963f20-0dba-4471-9c0a-db9d7fe29c3c",
+      "faceRectangle": {
+        "top": 139,
+        "left": 156,
+        "width": 91,
+        "height": 91
+      },
+      "faceAttributes": {
+        "emotion": {
+          "anger": 0,
+          "contempt": 0,
+          "disgust": 0,
+          "fear": 0,
+          "happiness": 0,
+          "neutral": 0.994,
+          "sadness": 0.005,
+          "surprise": 0
+        }
+      }
+    }
+  ]
+  </code></pre>
+
+  <p>The exercise is to parse this result and show the correct smiley for the emotion.
+  Look at the <em>face-api-result.js</em> file to get started.</p>
+
+  <p>Good luck</p>-->
+</div>
