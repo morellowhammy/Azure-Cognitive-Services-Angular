@@ -1,7 +1,16 @@
 <div class="ml-content">
-  <span class="ml-title">List of Competitors</span>
-
-<div class="ml-container">
+  <span class="ml-title">Administration Panel</span>
+<div class="ml-container" *ngIf="adminKey !== userKey">
+    <form [formGroup]="adminFormGroup" class="form-container"
+        (ngSubmit)="setUserKey(adminFormGroup.value)">
+    <mat-form-field>
+      <input matInput placeholder="Password" [formControl]="userKeyForm"
+        type="password" id="userKeyForm" required>
+    </mat-form-field>
+    <button type="submit" mat-button color="primary">Enter password</button>
+    </form>
+</div>
+<div class="ml-container" *ngIf="adminKey === userKey">
   <table mat-table [dataSource]="competitors" class="mat-elevation-z8">
 
     <!-- Name Column -->

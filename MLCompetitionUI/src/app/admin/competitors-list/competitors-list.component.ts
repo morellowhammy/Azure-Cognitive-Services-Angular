@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompetitionService } from 'src/app/shared/competition.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ICompetitor } from 'src/app/shared/competitor.model';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-competitors-list',
@@ -12,6 +13,10 @@ export class CompetitorsListComponent implements OnInit {
 
   public displayedColumns: string[];
   public competitors: ICompetitor[];
+  public adminFormGroup: FormGroup;
+  public userKeyForm: FormControl;
+  public adminKey = 'keyforge';
+  public userKey = '';
 
   @BlockUI() private blockUI: NgBlockUI;
 
@@ -19,6 +24,10 @@ export class CompetitorsListComponent implements OnInit {
 
   ngOnInit() {
     this.displayedColumns = ['name', 'email', 'delete'];
+    this.userKeyForm = new FormControl('');
+    this.adminFormGroup = new FormGroup({
+      userKey: this.userKeyForm
+    });
     this.loadCompetitors();
   }
 
@@ -39,5 +48,9 @@ export class CompetitorsListComponent implements OnInit {
       this.blockUI.stop();
     },
     () => this.blockUI.stop());
+  }
+
+  setUserKey(form) {
+    this.userKey = form.userKey;
   }
 }
