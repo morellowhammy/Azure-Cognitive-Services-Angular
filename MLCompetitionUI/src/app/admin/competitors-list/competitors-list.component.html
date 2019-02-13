@@ -10,9 +10,17 @@
     <button type="submit" mat-button color="primary">Enter password</button>
     </form>
 </div>
-<div class="ml-container" *ngIf="adminKey === userKey">
-  <table mat-table [dataSource]="competitors" class="mat-elevation-z8">
+<div class="" *ngIf="adminKey === userKey">
 
+  <p>
+    <label class="container">Enable Competition
+      <input type="checkbox" [(ngModel)]="isCompEnabled" (change)="setCompetitionEnable(isCompEnabled)">
+      <span class="checkmark"></span>
+    </label>
+  </p>
+
+  <div class="ml-container">
+  <table mat-table [dataSource]="competitors" class="mat-elevation-z8">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -36,5 +44,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+</div>
 </div>
 </div>

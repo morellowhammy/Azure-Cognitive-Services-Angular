@@ -1,3 +1,4 @@
+import { AdminService } from './../shared/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { CompetitionService } from 'src/app/shared/competition.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -17,10 +18,13 @@ export class CompetitorsListComponent implements OnInit {
   public userKeyForm: FormControl;
   public adminKey = 'keyforge';
   public userKey = '';
+  public isCompEnabled = true;
 
   @BlockUI() private blockUI: NgBlockUI;
 
-  constructor(public competitionService: CompetitionService) { }
+  constructor(
+    public competitionService: CompetitionService,
+    public adminService: AdminService) { }
 
   ngOnInit() {
     this.displayedColumns = ['name', 'email', 'delete'];
@@ -29,6 +33,7 @@ export class CompetitorsListComponent implements OnInit {
       userKey: this.userKeyForm
     });
     this.loadCompetitors();
+    this.loadCompetitionFlag();
   }
 
   delete(name: string) {
@@ -50,7 +55,23 @@ export class CompetitorsListComponent implements OnInit {
     () => this.blockUI.stop());
   }
 
+  loadCompetitionFlag() {
+    this.adminService.getCompetitionEnable().subscribe( (response) => {
+      this.isCompEnabled = response === 'true';
+    });
+  }
+
   setUserKey(form) {
     this.userKey = form.userKey;
+  }
+
+  public setCompetitionEnable(enabled) {
+    this.blockUI.start('Updating Competition...');
+
+    this.adminService.setCompetitionEnable(enabled).subscribe((response) => {
+      this.isCompEnabled = response;
+      this.blockUI.stop();
+    },
+    () => this.blockUI.stop());
   }
 }
