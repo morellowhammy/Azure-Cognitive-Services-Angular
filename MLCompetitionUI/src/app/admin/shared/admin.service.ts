@@ -6,8 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 
 const config = {
   // uriBase: 'https://172.22.192.184/v1'
-  uriBase: 'https://localhost:44317/v1'
-  // uriBase: 'https://mlcompetition.azurewebsites.net/v1'
+  // uriBase: 'https://localhost:44317/v1'
+  uriBase: 'https://mlcompetition.azurewebsites.net/v1'
 };
 
 @Injectable({
