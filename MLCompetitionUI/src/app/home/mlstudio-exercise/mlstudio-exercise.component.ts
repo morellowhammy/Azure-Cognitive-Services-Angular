@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/admin/shared/admin.service';
 
 @Component({
   selector: 'app-mlstudio-exercise',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MlstudioExerciseComponent implements OnInit {
 
-  constructor() { }
+  public isCompetitionStarted = false;
+
+  constructor(public adminService: AdminService) { }
 
   ngOnInit() {
+    this.adminService.getCompetitionEnable().subscribe( (response) => {
+      this.isCompetitionStarted = (response === 'true');
+    });
   }
 
 }

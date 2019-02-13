@@ -1,6 +1,10 @@
 <div class="ml-content">
     <h1>Machine Learning Competition - ML Studio Azure</h1>
 
+    <div *ngIf="!isCompetitionStarted">
+      <p>Competition hasn't started yet!</p>
+    </div>
+    <div *ngIf="isCompetitionStarted">
       <p>In this workshop you'll learn how to create a custom predictive Machine Learning service by using
         <a href="https://studio.azureml.net/" target="blank">Azure Machine Learning Studio</a>.</p>
 
@@ -159,5 +163,6 @@
 
         <p><img class="icon" src="assets/img/ml-azure-experiment.png"></p>
         <p>Your experiment should end up looking something like this</p>
+    </div>
 
   </div>
