@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MLCompetition.Interfaces;
 
 namespace MLCompetition.Controllers
 {
@@ -6,21 +7,26 @@ namespace MLCompetition.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private bool _competitionEnabled = true;
+        private readonly IAdminService _adminService;
+
+        public AdminController(IAdminService adminService)
+        {
+            _adminService = adminService;
+        }
 
         [HttpGet]
         [Route("competition-enable")]
         public ActionResult<string> GetCompetitionEnabled()
         {
-            return Ok(_competitionEnabled);
+            return Ok(_adminService.CompetitionEnabled);
         }
 
         [HttpPost]
         [Route("competition-enable")]
         public ActionResult Post([FromBody] bool competitionEnable)
         {
-            this._competitionEnabled = competitionEnable;
-            return Ok(_competitionEnabled);
+            _adminService.CompetitionEnabled = competitionEnable;
+            return Ok(_adminService.CompetitionEnabled);
         }
     }
 }
