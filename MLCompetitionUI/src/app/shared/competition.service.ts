@@ -84,7 +84,7 @@ export class CompetitionService {
     this.url = config.uriBase + '/version';
 
     return this.http.get(this.url, { responseType: 'text' })
-      .pipe(catchError(this.handleError<string>('getConnectors')));
+      .pipe(catchError(this.handleError<string>('getVersion')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
