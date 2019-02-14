@@ -1,26 +1,24 @@
-<div style="text-align:center">
+<div class="ai-lab-content">
   <h3>Hot Dog recognition - Custom Vision Api</h3>
-  <div class="content">
-    <div class="left">
-      <div>
-        <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
-        <br/>
-        <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-        <form id="fileForm">
-          <input type="file" accept="image/*" (change)="uploadImage($event)" (click)="reset()">
-        </form>
-      </div>
-      <div class="snapshot" *ngIf="webcamImage">
-        <h2>Nice one!</h2>
-        <img class="snapshot-image" [src]="webcamImage.imageAsDataUrl"/>
-      </div>
-      <div class="snapshot" *ngIf="fileImage">
-          <img class="snapshot-image" [src]="fileImage"/>
-      </div>
+  <div class="left">
+    <div>
+      <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+      <br/>
+      <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+      <form id="fileForm">
+        <input type="file" accept="image/*" (change)="uploadImage($event)" (click)="reset()">
+      </form>
     </div>
-    <div class="json-area" *ngIf="jsonResult">
-      <h3 *ngIf="predictionResult">{{predictionResult}}</h3>
-      <pre>{{jsonResult}}</pre>
+    <div class="snapshot" *ngIf="webcamImage">
+      <h2>Nice one!</h2>
+      <img class="snapshot-image" [src]="webcamImage.imageAsDataUrl"/>
     </div>
+    <div class="snapshot" *ngIf="fileImage">
+        <img class="snapshot-image" [src]="fileImage"/>
+    </div>
+  </div>
+  <div class="json-area" *ngIf="jsonResult">
+    <h3 *ngIf="predictionResult">{{predictionResult}}</h3>
+    <pre>{{jsonResult}}</pre>
   </div>
 </div>

@@ -26,6 +26,7 @@ namespace MLCompetition
             services.AddSingleton<IScoreService, AzureWinePredictor>();
             services.AddSingleton<ICompetitorService, CompetitorService>();
             services.AddSingleton<IRankingService, RankingService>();
+            services.AddSingleton<IAdminService, AdminService>();
             services.AddLogging();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>

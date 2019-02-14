@@ -7,7 +7,9 @@ import { IRankingRow } from './ranking-row.model';
 import { ToastrService } from 'ngx-toastr';
 
 const config = {
-  uriBase: 'https://172.22.192.184/v1'
+  // uriBase: 'https://172.22.192.184/v1'
+  // uriBase: 'https://localhost:44317/v1'
+  uriBase: 'https://mlcompetition.azurewebsites.net/v1'
 };
 
 const ELEMENT_DATA: IRankingRow[] = [
@@ -82,7 +84,7 @@ export class CompetitionService {
     this.url = config.uriBase + '/version';
 
     return this.http.get(this.url, { responseType: 'text' })
-      .pipe(catchError(this.handleError<string>('getConnectors')));
+      .pipe(catchError(this.handleError<string>('getVersion')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

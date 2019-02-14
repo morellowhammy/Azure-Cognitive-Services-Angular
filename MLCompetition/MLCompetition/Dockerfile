@@ -8,12 +8,15 @@ EXPOSE 44317
 
 FROM microsoft/dotnet:2.1-sdk-nanoserver-1803 AS build
 WORKDIR /src
+# Copy csproj and restore as distinct layers
 COPY ["MLCompetition/MLCompetition.csproj", "MLCompetition/"]
 RUN dotnet restore "MLCompetition/MLCompetition.csproj"
+# Copy everything else and build
 COPY . .
 WORKDIR "/src/MLCompetition"
 RUN dotnet build "MLCompetition.csproj" -c Release -o /app
 
+# Build runtime image
 FROM build AS publish
 RUN dotnet publish "MLCompetition.csproj" -c Release -o /app
 

@@ -14,12 +14,18 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BlockUIModule } from 'ng-block-ui';
+import { FaceExerciseComponent } from './home/face-exercise/face-exercise.component';
+import { CustomVisionExerciseComponent } from './home/custom-vision-exercise/custom-vision-exercise.component';
+import { MlstudioExerciseComponent } from './home/mlstudio-exercise/mlstudio-exercise.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    FaceExerciseComponent,
+    CustomVisionExerciseComponent,
+    MlstudioExerciseComponent
   ],
   imports: [
     BrowserModule,

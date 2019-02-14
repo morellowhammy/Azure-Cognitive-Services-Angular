@@ -15,3 +15,27 @@
   top: 0;
   z-index: 1;
 }
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+.icon {
+  max-width: 30px;
+  height: auto;
+  padding-right: 10px;
+}
+
+.title {
+  font-size: 22px;
+}
+
+.material-icons {
+  cursor: pointer;
+}
+
+.mat-toolbar.mat-primary.footer {
+  position: fixed;
+  bottom: 0;
+  top: initial;
+}
