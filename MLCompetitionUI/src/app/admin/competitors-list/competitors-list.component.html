@@ -18,6 +18,15 @@
       <span class="checkmark"></span>
     </label>
   </p>
+    <form [formGroup]="numberScoringTestGroup" class="form-container"
+        (ngSubmit)="setNumberOfScoringTest(numberScoringTestGroup.value)">
+      <mat-form-field>
+        <input matInput placeholder="Number Of Scoring Tests" [formControl]="numberScoringTestControl"
+        type="number" min="1" id="numberScoringTestControl" [(ngModel)]="numberOfScoringTests" required>
+      </mat-form-field>
+      <button type="submit" mat-button color="primary">Set Number Of Scoring Tests</button>
+    </form>
+
 
   <div class="ml-container">
   <table mat-table [dataSource]="competitors" class="mat-elevation-z8">

@@ -5,7 +5,6 @@ import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 const config = {
-  // uriBase: 'https://172.22.192.184/v1'
   // uriBase: 'https://localhost:44317/v1'
   uriBase: 'https://mlcompetition.azurewebsites.net/v1'
 };
@@ -45,6 +44,21 @@ export class AdminService {
 
     return this.http.post<boolean>(this.url, enable, options)
       .pipe(catchError(this.handleError<boolean>('setCompetitionEnable')));
+  }
+
+  public getNumberOfScoringTests(): Observable<string> {
+    this.url = config.uriBase + '/admin/num-scoring-tests/';
+
+    return this.http.get(this.url, { responseType: 'text' })
+      .pipe(catchError(this.handleError<string>('getNumberOfScoringTests')));
+  }
+
+  public setNumberOfScoringTests(numScoringTests: number): Observable<number> {
+    const options = {headers: this.jsonHeaders};
+    this.url = config.uriBase + '/admin/num-scoring-tests/';
+
+    return this.http.post<number>(this.url, numScoringTests, options)
+      .pipe(catchError(this.handleError<number>('getNumberOfScoringTests')));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
