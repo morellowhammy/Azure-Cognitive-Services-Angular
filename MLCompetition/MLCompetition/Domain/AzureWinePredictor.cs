@@ -19,12 +19,15 @@ namespace MLCompetition.Domain
 
         private readonly IScoreDataService<Wine> _scoreDataService;
 
-        private const int NUMBER_WINES_TO_EVALUATE = 10;
+        private const int NUMBER_WINES_TO_EVALUATE = 100;
+
+        public int NumberOfTests { get; set; }
 
         public AzureWinePredictor(IScoreDataService<Wine> scoreDataService)
         {
             _scoreDataService = scoreDataService;
             _scoreDataService.Init();
+            NumberOfTests = NUMBER_WINES_TO_EVALUATE;
         }
 
         public async Task<IEnumerable<string>> ValidateEndpoint(string apiAccessToken, string endpoint)
@@ -57,7 +60,7 @@ namespace MLCompetition.Domain
             _endpoint = endpoint;
             List<WineEvaluation> wineEvaluationList = new List<WineEvaluation>();
 
-            var wineListToEvaluate = _scoreDataService.GetData().Take(NUMBER_WINES_TO_EVALUATE);
+            var wineListToEvaluate = _scoreDataService.GetData().Take(NumberOfTests);
 
             foreach (var wine in wineListToEvaluate)
             {
@@ -80,7 +83,7 @@ namespace MLCompetition.Domain
             _endpoint = endpoint;
             var wineEvaluationList = new ConcurrentBag<WineEvaluation>();
 
-            var wineListToEvaluate = _scoreDataService.GetData().Take(NUMBER_WINES_TO_EVALUATE);
+            var wineListToEvaluate = _scoreDataService.GetData().Take(NumberOfTests);
 
             await Task.WhenAll(wineListToEvaluate.Select(wine => Task.Run(async () =>
             {
