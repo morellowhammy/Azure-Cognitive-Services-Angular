@@ -4,6 +4,7 @@ import {
   MatSidenavModule,
   MatIconModule,
   MatListModule,
+  MatCardModule,
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,8 @@ const modules = [
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule
+  MatListModule,
+  MatCardModule
 ];
 
 @NgModule({
