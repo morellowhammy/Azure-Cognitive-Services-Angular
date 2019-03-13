@@ -1,29 +1,29 @@
 <mat-sidenav-container class="sidenav-container">
-<mat-toolbar color="primary">
-  <a mat-button class="title" [routerLink]="['/']">
-    <img class="icon" src="assets/img/ml-icon.png">ML Competition
-  </a>
-  <span class="fill-space"></span>
-  <a mat-button [routerLink]="['/competition']">Register</a>
-  <a mat-button [routerLink]="['/competition/ranking']">Ranking</a>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <i class="material-icons">menu</i>
-  </button>
-  <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="['/home/face-exercise']">Exercise 1</button>
-      <button mat-menu-item [routerLink]="['/home/custom-vision-exercise']">Exercise 2</button>
-      <button mat-menu-item [routerLink]="['/home/mlstudio-exercise']">Exercise 3</button>
-      <button mat-menu-item [routerLink]="['/admin']">Admin</button>
-    </mat-menu>
-</mat-toolbar>
+  <mat-toolbar color="primary">
+    <a mat-button class="title" [routerLink]="['/']">
+      <img class="icon" src="assets/img/ml-icon.png">ML Competition
+    </a>
+    <span class="fill-space"></span>
+    <a mat-button [routerLink]="['/competition']">Register</a>
+    <a mat-button [routerLink]="['/competition/ranking']">Ranking</a>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <i class="material-icons">menu</i>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/home/face-exercise']">Exercise 1</button>
+        <button mat-menu-item [routerLink]="['/home/custom-vision-exercise']">Exercise 2</button>
+        <button mat-menu-item [routerLink]="['/home/mlstudio-exercise']">Exercise 3</button>
+        <button mat-menu-item [routerLink]="['/admin']">Admin</button>
+      </mat-menu>
+  </mat-toolbar>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
-<mat-toolbar color="primary" class="footer">
-  <a mat-button class="title" [routerLink]="['/']">
-    <img class="icon" src="assets/img/ml-icon.png">ML Competition
-  </a>
-  <span class="fill-space"></span>
-  <button mat-button>Developed by Víctor Escudero</button>
-</mat-toolbar>
+  <mat-toolbar color="primary" class="footer">
+    <a mat-button class="title" [routerLink]="['/']">
+      <img class="icon" src="assets/img/ml-icon.png">ML Competition
+    </a>
+    <span class="fill-space"></span>
+    <button mat-button>Developed by Víctor Escudero</button>
+  </mat-toolbar>
 </mat-sidenav-container>
