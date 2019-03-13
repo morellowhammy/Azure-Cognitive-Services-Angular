@@ -1,24 +1,39 @@
 <div class="ai-lab-content">
   <h3>Hot Dog recognition - Custom Vision Api</h3>
-  <div class="left">
-    <div>
-      <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
-      <br/>
-      <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+  <mat-card class="webcam-card">
+    <mat-card-header>
+      <div mat-card-avatar class="webcam-header-image"></div>
+      <mat-card-title>Hot Dogs Camera</mat-card-title>
+      <mat-card-subtitle>Shoot an object or choose a file to check if it is a hot dog</mat-card-subtitle>
+    </mat-card-header>
+    <webcam class="webcam" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+    <mat-card-actions>
+      <button mat-button color="primary" (click)="triggerSnapshot();">SHOOT</button>
       <form id="fileForm">
         <input type="file" accept="image/*" (change)="uploadImage($event)" (click)="reset()">
       </form>
-    </div>
-    <div class="snapshot" *ngIf="webcamImage">
-      <h2>Nice one!</h2>
-      <img class="snapshot-image" [src]="webcamImage.imageAsDataUrl"/>
-    </div>
-    <div class="snapshot" *ngIf="fileImage">
-        <img class="snapshot-image" [src]="fileImage"/>
-    </div>
-  </div>
-  <div class="json-area" *ngIf="jsonResult">
-    <h3 *ngIf="predictionResult">{{predictionResult}}</h3>
-    <pre>{{jsonResult}}</pre>
-  </div>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="hotdog-image-card" *ngIf="webcamImage || fileImage">
+    <mat-card-header>
+      <div mat-card-avatar class="hotdog-header-image"></div>
+      <mat-card-title>Your Hot Dog Image</mat-card-title>
+    </mat-card-header>
+      <div class="snapshot" *ngIf="webcamImage">
+        <img class="snapshot-cam-image" [src]="webcamImage.imageAsDataUrl"/>
+      </div>
+      <div class="snapshot" *ngIf="fileImage">
+          <img class="snapshot-file-image" [src]="fileImage"/>
+      </div>
+    <mat-card-actions>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card class="json-card" *ngIf="jsonResult">
+    <mat-card-header>
+      <div mat-card-avatar class="json-header-image"></div>
+      <mat-card-title *ngIf="predictionResult">{{predictionResult}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+      <pre class="json-result">{{jsonResult}}</pre>
+  </mat-card>
 </div>
