@@ -17,19 +17,20 @@
     <li>Log in using a valid account (learn more above).</li>
     <li>If this is your first time visiting the portal, it will request some permissions. Click the Yes button to agree (you can revoke these permissions later if necessary).</li>
     <li>If this is your first time visiting the portal, it will also prompt you to agree with the terms and conditions. Check the box to indicate consent and then click the I agree button.</li>
+
     <li>Click New Project.</li>
+    <p><img class="icon" src="assets/img/custom-vision-new-project.png"></p>
+
     <li>Provide the required values:</li>
-  </ul>
-
-  <ul>
-      <li>Name: hotdogLab</li>
+    <p><img class="icon" src="assets/img/custom-vision-new-project-properties.png"></p>
+    <ul>
+      <li>Name: HotdogLab</li>
       <li>Description: Custom Hotdog Lab</li>
-      <li>Domains: Food</li>
       <li>Project Types: Classification</li>
-      <li>Classification Types: Multilabel</li>
+      <li>Classification Types: Multilabel (Multiple tags per image)</li>
+      <li>Domains: Food</li>
     </ul>
-
-  <ul>
+    <br>
     <li>Click Create Project.</li>
   </ul>
 
@@ -38,9 +39,9 @@
   <p>Now we are ready to train our custom vision service.</p>
 
   <ul>
-    <li>Click on the newly created project in customvision.ai</li>
-    <li>Now, click <em>Add Images</em> and select all images in the provided <em>/training-hotdogs</em> folder and tag the images as hotdog.</li>
+    <li>Now, click <em>Add Images</em> and select all images in the provided <code>/training-hotdogs</code> folder and tag the images as <code>hotdog</code>.</li>
     <li>When completed, click on <em>Train</em> up in the right corner.</li>
+    <p><img class="icon" src="assets/img/custom-vision-training.png"></p>
     <li>Wait for the training to complete.</li>
   </ul>
 
@@ -58,8 +59,9 @@
   <p>You're now ready to connect the custom vision service with the provided Angular application.</p>
 
   <ul>
-    <li>Go to the <em>Performance Tab</em> -> <em>Predict URL</em> and copy URL and Prediction-Key form the <em>If you have an image file</em> section.</li>
-    <li>Paste these in <em>/app/custom-vision/shared/hotdog-vision.service.ts</em></li>
+    <li>Go to the <em>Performance Tab</em> -> <em>Predict URL</em> and copy <code>URL</code> and <code>Prediction-Key</code> form the <code>If you have an image file</code> section.</li>
+    <p><img class="icon" src="assets/img/custom-vision-prediction-api.png"></p>
+    <li>Paste these in <code>/app/custom-vision/shared/hotdog-vision.service.ts</code></li>
   </ul>
 
   <h2 class="ml-title">6. Run the application.</h2>
@@ -74,8 +76,8 @@
   <h2 class="ml-title">7. Code</h2>
 
     <p>Fix the code so it returns hotdog when images of hotdogs are uploaded and not hotdog when images of everything else is provided.</p>
-    <p>You can search the TODOs in the application code to find the places you need to code in.</p>
-    <p>Look at the <em>hotdog.component.ts</em> file to get started.</p>
+    <p>You can search the <code>TODOs</code> in the application code to find the places you need to code in.</p>
+    <p>Look at the <code>hotdog.component.ts</code> file to get started.</p>
 
   <p>Good luck!</p>
 </div>
