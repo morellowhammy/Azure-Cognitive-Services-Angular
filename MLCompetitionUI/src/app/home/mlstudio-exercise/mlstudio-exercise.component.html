@@ -1,5 +1,5 @@
 <div class="ml-content">
-    <h1>Machine Learning Competition - ML Studio Azure</h1>
+    <h1 class="ml-title">Machine Learning Competition - ML Studio Azure</h1>
 
     <div *ngIf="!isCompetitionStarted">
       <p>Competition hasn't started yet!</p>
@@ -12,14 +12,14 @@
          When you are done with your ML service, copy endpoint and api key over to <a [routerLink]="['/competition']">Registry Form</a>
          and all scores will be shown in <a [routerLink]="['/competition/ranking']">Ranking Page</a>.</p>
 
-      <h2>Step-by-step</h2>
+      <h2 class="ml-title">Step-by-step</h2>
 
-      <h3>1. Create a User on Machine Learning Studio</h3>
+      <h3 class="ml-title">1. Create a User on Machine Learning Studio</h3>
 
       <p>Go to <a href="https://studio.azureml.net/" target="blank">Azure Machine Learning Studio</a> and follow the steps to sign in with
         your microsoft account.</p>
 
-      <h3>2. Upload the provided dataset</h3>
+      <h3 class="ml-title">2. Upload the provided dataset</h3>
 
         <p>The dataset that will be used to train the machine learning service is located <a href="assets/files/winequality-red.csv">here</a>,
           download it to your computer.</p>
@@ -32,7 +32,7 @@
         <li>Click <em>New</em> in the bottom left corner and upload the winequality-red.csv file.</li>
         </ol>
 
-      <h3>3. Create a new machine learning experiment</h3>
+      <h3 class="ml-title">3. Create a new machine learning experiment</h3>
 
         <p>Your're now ready to create your experiment. </p>
 
@@ -46,7 +46,7 @@
         <li>Give the Experiment a name</li>
         </ol>
 
-      <h3>4. Insert and preprocess the dataset</h3>
+      <h3 class="ml-title">4. Insert and preprocess the dataset</h3>
 
         <p>A good machine learning experiment starts with a dataset.
         Insert the winequality dataset and select which columns to use:</p>
@@ -77,7 +77,7 @@
         </em> to <em>0.7</em></li>
         </ol>
 
-      <h3>5. Train model and chose an algorithm</h3>
+      <h3 class="ml-title">5. Train model and chose an algorithm</h3>
 
         <ol>
         <li>Drag the <em>Train Model</em> component onto the experiment pane from <em>Machine Learning
@@ -100,7 +100,7 @@
           should be connected to the <em>Train Model</em> components top right side.</li>
         </ol>
 
-      <h3>6. Score and Evaluate your model</h3>
+      <h3 class="ml-title">6. Score and Evaluate your model</h3>
 
         <p>Before running the model add the <em>Score Model</em> and <em>Evaluate Model</em> components to score and evaluate
           how good your predictive model is.</p>
@@ -115,27 +115,27 @@
           <em>Evaluate</em> &rarr; <em>Evaluate Model</em>. This should be connected to <em>Score Model</em>.</p></li>
         </ol>
 
-      <h3>7. Run the experiment</h3>
+      <h3 class="ml-title">7. Run the experiment</h3>
 
         <p>You are now ready to run the experiment. Click on <em>Run</em> in the bottom center and wait while your
           experiment is training. When finished you can inspect the results by visualizing the <em>Score Model</em>
           and <em>Evaluate Model</em> components.</p>
 
-      <h3>8. Publish your model</h3>
+      <h3 class="ml-title">8. Publish your model</h3>
 
         <p>When you are pleased with the results, publish the predictive model as a web service service by clicking
           <em>Set up Web Service</em> in the bottom center. (You can use the same bottom to update the service later)</p>
 
         <p>After clicking you'll notice that the experiment pane changed.</p>
 
-      <h3>9. Deploy your model as a Web Service</h3>
+      <h3 class="ml-title">9. Deploy your model as a Web Service</h3>
 
         <p>Now you can setup the input (Remove quality column) and the output (Select score column) of the web service by using
           <em>Select Column in Dataset</em> and you have to run the experiment again before to deploy.</p>
 
         <p>After run you can click *Deploy Web Service".</p>
 
-      <h3>10. Register your model in the ML Competition</h3>
+      <h3 class="ml-title">10. Register your model in the ML Competition</h3>
 
         <p>After the experiment is deployed. Navigate to <em>Web Serices</em> on the right menu.</p>
 
@@ -152,12 +152,12 @@
 
         <p><img class="icon" src="assets/img/ml-azure-consume-service.png"></p>
 
-      <h3>11. Retry and improve your score</h3>
+      <h3 class="ml-title">11. Retry and improve your score</h3>
 
         <p>You can update your model, redeploy it and enter the MLScorer as many times as you like.
         Feel free to utilize more or different components while experimenting. How good can you get your prediction?</p>
 
-      <h2>Completed Experiment</h2>
+      <h2 class="ml-title">Completed Experiment</h2>
 
         <p>By following the step-by-step, your experiment should end up looking something like this:</p>
 
