@@ -4,6 +4,7 @@ import { CompetitionService } from 'src/app/shared/competition.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ICompetitor } from 'src/app/shared/competitor.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-competitors-list',
@@ -23,6 +24,7 @@ export class CompetitorsListComponent implements OnInit {
   public userKey = '';
   public isCompEnabled = true;
   public numberOfScoringTests = 100;
+  public environmentName: string;
 
   @BlockUI() private blockUI: NgBlockUI;
 
@@ -31,6 +33,7 @@ export class CompetitorsListComponent implements OnInit {
     public adminService: AdminService) { }
 
   ngOnInit() {
+    this.environmentName = environment.envName;
     this.displayedColumns = ['name', 'email', 'delete'];
     this.userKeyForm = new FormControl('');
     this.numberScoringTestControl = new FormControl('', [

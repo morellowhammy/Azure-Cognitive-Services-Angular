@@ -1,5 +1,5 @@
 <div class="ml-content">
-  <span class="ml-title">Administration Panel</span>
+  <span class="ml-title">Administration Panel [{{environmentName}}]</span>
 <div class="ml-container" *ngIf="adminKey !== userKey">
     <form [formGroup]="adminFormGroup" class="form-container"
         (ngSubmit)="setUserKey(adminFormGroup.value)">
