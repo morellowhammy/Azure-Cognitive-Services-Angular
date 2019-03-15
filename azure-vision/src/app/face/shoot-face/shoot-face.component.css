@@ -5,6 +5,7 @@
 .webcam-card {
   max-width: 400px;
   margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .webcam-header-image {
@@ -15,6 +16,7 @@
 .portrait-card {
   max-width: 400px;
   margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .portrait-header-image {
@@ -32,6 +34,7 @@
   float: left;
   margin-left: 15px;
   margin-top: 20px;
+  margin-bottom: 5px;
 }
 
 .json-header-image {
