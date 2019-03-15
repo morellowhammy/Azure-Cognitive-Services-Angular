@@ -23,7 +23,10 @@ export class FaceService {
   private headers;
 
   constructor(private http: HttpClient) {
-    this.url = config.uriBase + '/detect?returnFaceAttributes=' + config.params.returnFaceAttributes;
+    this.url = config.uriBase + '/detect?returnFaceId=' + config.params.returnFaceId +
+      '&returnFaceLandmarks=' + config.params.returnFaceLandmarks +
+      '&returnFaceAttributes=' + config.params.returnFaceAttributes;
+
     this.headers = new HttpHeaders({
       'Content-Type': 'application/octet-stream',
       'Ocp-Apim-Subscription-Key': config.subscriptionKey
