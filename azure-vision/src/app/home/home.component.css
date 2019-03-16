@@ -1,0 +1,12 @@
+.left {
+  float: left;
+}
+
+.right-container {
+  margin: 50px 10px;
+}
+
+h2.ai-lab-title {
+  margin: 60px 10px;
+  border: 1px;
+}

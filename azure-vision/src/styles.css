@@ -3,6 +3,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.mat-drawer-container {
+  background-color: white;
+}
+
 .ai-lab-content {
   margin-left: 10%;
   margin-right: 10%;
