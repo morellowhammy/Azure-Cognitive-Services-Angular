@@ -2,18 +2,64 @@
   float: left;
 }
 
-.json-area {
+.webcam-card {
+  max-width: 400px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-right: 10px;
   float: left;
-  margin-left: 15px;
 }
 
-.snapshot-image {
+.webcam-header-image {
+  background-image: url('https://az818438.vo.msecnd.net/officialicons/cognitiveservicescustomvision/icon_1.0.970.1155_08e64932-b105-47f8-8ad9-4056f9b097e1.png');
+  background-size: cover;
+}
+
+#fileForm {
+  display: inline;
+}
+
+.hotdog-image-card {
+  max-width: 400px;
+  margin-top: 20px;
+  margin-right: 10px;
+  float: left;
+}
+
+.hotdog-header-image {
+  background-image: url('https://az818438.vo.msecnd.net/officialicons/cognitiveservicescustomvision/icon_1.0.970.1155_08e64932-b105-47f8-8ad9-4056f9b097e1.png');
+  background-size: cover;
+}
+
+.snapshot-cam-image {
   -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+  max-height: 300px;
+  max-width: 400px;
+}
+
+.snapshot-file-image {
+  max-height: 300px;
+  max-width: 400px;
+}
+
+.json-card {
+  float: left;
+  margin-top: 20px;
+}
+
+.json-header-image {
+  background-image: url('https://www.alooma.com/img/integrations/json.png');
+  background-size: cover;
+}
+
+.json-result{
+  width: 400px;
 }
 
 pre {
   padding: 10px;
+  margin-top: 5px;
   background-color: #f1f1f1;
   width: 100%;
   margin: 0;

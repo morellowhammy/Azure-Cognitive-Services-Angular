@@ -1,25 +1,26 @@
 <div class="ml-content">
-  <h1>Exercise 1: Cognitive Services - Face API</h1>
+  <h1 class="ml-title">Exercise 1: Cognitive Services - Face API</h1>
 
   <p>In this first part of the workshop we will be looking into Microsoft Cognitive Services. First of, we will be using the Face API,
     where we will post an image of a person to a REST-api and get back a result containing information related to the persons emotions, as perceived by the AI.</p>
 
-  <h2>Prerequisites</h2>
+  <h2 class="ml-title">Prerequisites</h2>
 
   <ol>
     <li>Node.js: Download and install it first <a href="https://nodejs.org/en/download/" target="_blank">node and npm</a>.</li>
-    <li>Angular CLI: To install the CLI using npm, open a terminal/console window and enter the following command: <code>npm install -g @angular/cli</code></li>
+    <li>Angular CLI: To install the CLI using npm, open a terminal/console window and enter the following command:
+      <code>npm install -g @angular/cli</code></li>
   </ol>
 
-  <h2 id="objectives">Objectives</h2>
+  <h2 class="ml-title">Objectives</h2>
 
   <ol>
     <li>Obtain your Face API Key</li>
     <li>Take a selfie and handle the result, displaying the <em>emoji</em> that best reflects
-      the emotion returned by the Face API (<em>e.g. angry emoji for</em> <code>anger</code>)</li>
+      the emotion returned by the Face API (<em>e.g. angry emoji for anger emotion</em>)</li>
   </ol>
 
-  <h2>1. Setup</h2>
+  <h2 class="ml-title">1. Setup</h2>
 
   <ol>
     <li>Download the following repository for this exercise: <a href="https://github.com/vescuderorusillo/ml-workshop" target="_blank">ML Workshop</a>.</li>
@@ -43,21 +44,25 @@
 
   <p>Now that you have configured your API key we are ready to try out some artificial intelligence.</p>
 
-  <h2>2. Run the application.</h2>
+  <h2 class="ml-title">2. Run the application.</h2>
 
   <ul>
-    <li>Navigate to the base folder in a terminal and type <code>ng serve -o</code></li>
-    <li>This should install the required packages and run the web site on localhost:4200</li>
+    <li>Navigate to the base folder in a terminal.</li>
+    <li>To install node packages type: <code>npm install</code></li>
+    <li>To run the Angular application type: <code>ng serve -o</code></li>
+    <li>This should install the required packages and run the web site on <code>http://localhost:4200</code></li>
     <li>Allow the site to use web camera.</li>
     <li>Capture a selfie and watch the results.</li>
   </ul>
 
-  <h2 id="4code">4. Code</h2>
+  <h2 class="ml-title">4. Code</h2>
 
-  <p>You can search the TODOs in the application code to find the places you need to code in.</p>
+  <p>You can search the <code>TODOs</code> in the application code to find the places you need to code in.</p>
 
   <p>The exercise is to parse Face API result and show the correct smiley for the emotion.
-  Look at the <em>shoot-face.component.ts</em> and <em>emoji.service.ts</em> files to get started.</p>
+  Look at the <code>shoot-face.component.ts</code> and <code>emoji.service.ts</code> files to get started.</p>
+
+  <p>In the following site you will find the list of <a href="http://www.unicode.org/emoji/charts/full-emoji-list.html" target="_blank">Emojis with the Unicode</a>.</p>
 
   <p>Good luck!</p>
 </div>

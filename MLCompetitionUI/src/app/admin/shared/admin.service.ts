@@ -3,16 +3,14 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-
-const config = {
-  // uriBase: 'https://localhost:44317/v1'
-  uriBase: 'https://mlcompetition.azurewebsites.net/v1'
-};
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+
+  public competitionServiceUrl: string;
 
   private url;
   private textHeaders;
@@ -22,6 +20,7 @@ export class AdminService {
     private http: HttpClient,
     private toastr: ToastrService
     ) {
+    this.competitionServiceUrl = environment.competitionServiceUrl;
     this.textHeaders = new HttpHeaders({
       'Content-Type': 'text/plain'
     });
@@ -32,7 +31,7 @@ export class AdminService {
   }
 
   public getCompetitionEnable(): Observable<string> {
-    this.url = config.uriBase + '/admin/competition-enable/';
+    this.url = this.competitionServiceUrl + '/admin/competition-enable/';
 
     return this.http.get(this.url, { responseType: 'text' })
       .pipe(catchError(this.handleError<string>('getCompetitionEnable')));
@@ -40,14 +39,14 @@ export class AdminService {
 
   public setCompetitionEnable(enable: boolean): Observable<boolean> {
     const options = {headers: this.jsonHeaders};
-    this.url = config.uriBase + '/admin/competition-enable/';
+    this.url = this.competitionServiceUrl + '/admin/competition-enable/';
 
     return this.http.post<boolean>(this.url, enable, options)
       .pipe(catchError(this.handleError<boolean>('setCompetitionEnable')));
   }
 
   public getNumberOfScoringTests(): Observable<string> {
-    this.url = config.uriBase + '/admin/num-scoring-tests/';
+    this.url = this.competitionServiceUrl + '/admin/num-scoring-tests/';
 
     return this.http.get(this.url, { responseType: 'text' })
       .pipe(catchError(this.handleError<string>('getNumberOfScoringTests')));
@@ -55,7 +54,7 @@ export class AdminService {
 
   public setNumberOfScoringTests(numScoringTests: number): Observable<number> {
     const options = {headers: this.jsonHeaders};
-    this.url = config.uriBase + '/admin/num-scoring-tests/';
+    this.url = this.competitionServiceUrl + '/admin/num-scoring-tests/';
 
     return this.http.post<number>(this.url, numScoringTests, options)
       .pipe(catchError(this.handleError<number>('getNumberOfScoringTests')));

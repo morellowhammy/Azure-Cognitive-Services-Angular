@@ -1,3 +1,4 @@
+import { AdminService } from 'src/app/admin/shared/admin.service';
 import { CompetitionService } from './../../shared/competition.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
@@ -17,6 +18,7 @@ export class RegistryComponent implements OnInit {
   public email: FormControl;
   public apiAccessToken: FormControl;
   public endpoint: FormControl;
+  public isCompetitionStarted = false;
 
   public endpointFormat = `
   {
@@ -46,7 +48,8 @@ export class RegistryComponent implements OnInit {
   constructor(
     private competitionService: CompetitionService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private adminService: AdminService) { }
 
   ngOnInit() {
     this.name = new FormControl('', [
@@ -63,9 +66,18 @@ export class RegistryComponent implements OnInit {
       apiAccessToken: this.apiAccessToken,
       endpoint: this.endpoint
     });
+
+    this.adminService.getCompetitionEnable().subscribe( (response) => {
+      this.isCompetitionStarted = (response === 'true');
+    });
   }
 
   registerCompetitor(competitor: ICompetitor) {
+    if (!this.isCompetitionStarted) {
+      this.toastr.warning('Sorry, there is no competition in progress!');
+      return;
+    }
+
     if (this.competitorFormGroup.valid) {
       this.blockUI.start('Registering competitor...');
       this.competitionService.addCompetitor(competitor).subscribe((comp: ICompetitor) => {

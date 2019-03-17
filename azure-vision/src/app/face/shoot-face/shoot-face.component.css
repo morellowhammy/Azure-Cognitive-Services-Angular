@@ -2,23 +2,53 @@
   float: left;
 }
 
-.json-area {
-  float: left;
-  margin-left: 15px;
+.webcam-card {
+  max-width: 400px;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 
-.emoji-area {
-  float: left;
-  margin-left: 15px;
+.webcam-header-image {
+  background-image: url('https://az818438.vo.msecnd.net/officialicons/faceapi/icon_1.0.970.1155_5df0acf6-d42a-412d-98b2-dc040358e214.png');
+  background-size: cover;
+}
+
+.portrait-card {
+  max-width: 400px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.portrait-header-image {
+  background-image: url('https://az818438.vo.msecnd.net/officialicons/faceapi/icon_1.0.970.1155_5df0acf6-d42a-412d-98b2-dc040358e214.png');
+  background-size: cover;
 }
 
 .snapshot-image {
   -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+  height: 300px;
+}
+
+.json-card {
+  float: left;
+  margin-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.json-header-image {
+  background-image: url('https://www.alooma.com/img/integrations/json.png');
+  background-size: cover;
+}
+
+.json-result{
+  width: 400px;
 }
 
 pre {
   padding: 10px;
+  margin-top: 5px;
   background-color: #f1f1f1;
   width: 100%;
   margin: 0;
@@ -28,9 +58,18 @@ pre {
   text-align: left;
 }
 
+.emoji-card {
+  float: left;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+.emoji-header-image {
+  background-image: url('https://img2.androidappsapk.co/300/1/a/2/com.rlapps.emoji.camera.sticker.maker.png');
+  background-size: cover;
+}
+
 .emoji {
   color: #000;
   font-size: 15em;
-  display: inline-block;
-  line-height: 2;
 }

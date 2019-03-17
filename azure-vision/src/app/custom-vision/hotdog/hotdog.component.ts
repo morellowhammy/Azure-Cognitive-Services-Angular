@@ -49,7 +49,7 @@ export class HotdogComponent implements OnInit {
       console.log(response);
       this.jsonResult = JSON.stringify(response, undefined, 2);
       const hotdogPrediction = response.predictions.find(x => x.tagName === 'hotdog') as Prediction;
-      if (hotdogPrediction.probability > 0.7) {
+      if (hotdogPrediction.probability > 0.9) {
         this.predictionResult = 'IT IS A HOT DOG!!';
       } else {
         this.predictionResult = 'IT IS NOT A HOT DOG!!';

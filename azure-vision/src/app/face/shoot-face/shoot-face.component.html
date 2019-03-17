@@ -1,20 +1,42 @@
 <div class="ai-lab-content">
   <h3>Face Shooting - Face Api</h3>
   <div class="left">
-    <div>
-      <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
-      <br/>
-      <button id="snapshotBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-    </div>
-    <div class="snapshot" *ngIf="webcamImage">
-      <h2>Nice one!</h2>
+    <mat-card class="webcam-card">
+      <mat-card-header>
+        <div mat-card-avatar class="webcam-header-image"></div>
+        <mat-card-title>Face Camera</mat-card-title>
+        <mat-card-subtitle>Show your best face</mat-card-subtitle>
+      </mat-card-header>
+      <webcam class="webcam" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="triggerSnapshot();">SHOOT</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="portrait-card" *ngIf="webcamImage">
+      <mat-card-header>
+        <div mat-card-avatar class="portrait-header-image"></div>
+        <mat-card-title>Your Portrait</mat-card-title>
+        <mat-card-subtitle>Nice one!</mat-card-subtitle>
+      </mat-card-header>
       <img class="snapshot-image" [src]="webcamImage.imageAsDataUrl"/>
-    </div>
+      <mat-card-actions>
+      </mat-card-actions>
+    </mat-card>
   </div>
-  <div class="json-area" *ngIf="jsonResult">
-    <pre>{{jsonResult}}</pre>
-  </div>
-  <div class="emoji-area">
+  <mat-card class="json-card" *ngIf="jsonResult">
+    <mat-card-header>
+      <div mat-card-avatar class="json-header-image"></div>
+      <mat-card-title>Face Api Json Result</mat-card-title>
+      <mat-card-subtitle>You should analyze this information</mat-card-subtitle>
+    </mat-card-header>
+      <pre class="json-result">{{jsonResult}}</pre>
+  </mat-card>
+  <mat-card class="emoji-card">
+    <mat-card-header>
+      <div mat-card-avatar class="emoji-header-image"></div>
+      <mat-card-title>Emotion Emoji</mat-card-title>
+      <mat-card-subtitle>Try to get another emoji</mat-card-subtitle>
+    </mat-card-header>
     <span class="emoji">{{emojiIcon}}</span>
-  </div>
+  </mat-card>
 </div>
