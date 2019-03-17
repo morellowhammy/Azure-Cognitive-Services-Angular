@@ -5,11 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { ICompetitor } from './competitor.model';
 import { IRankingRow } from './ranking-row.model';
 import { ToastrService } from 'ngx-toastr';
-
-const config = {
-  //uriBase: 'https://localhost:44317/v1'
-  uriBase: 'https://mlcompetition.azurewebsites.net/v1'
-};
+import { environment } from 'src/environments/environment';
 
 const ELEMENT_DATA: IRankingRow[] = [
   {position: 1, name: 'Antuan', score: 1.0079, attempts: 3},
@@ -29,6 +25,8 @@ const ELEMENT_DATA: IRankingRow[] = [
 })
 export class CompetitionService {
 
+  public competitionServiceUrl: string;
+
   private url;
   private textHeaders;
   private jsonHeaders;
@@ -37,6 +35,7 @@ export class CompetitionService {
     private http: HttpClient,
     private toastr: ToastrService
     ) {
+    this.competitionServiceUrl = environment.competitionServiceUrl;
     this.textHeaders = new HttpHeaders({
       'Content-Type': 'text/plain'
     });
@@ -47,7 +46,7 @@ export class CompetitionService {
   }
 
   public getCompetitorsList(): Observable<ICompetitor[]> {
-    this.url = config.uriBase + '/competitors';
+    this.url = this.competitionServiceUrl + '/competitors';
     const options = { headers: this.jsonHeaders };
 
     return this.http.get<ICompetitor[]>(this.url, options)
@@ -56,7 +55,7 @@ export class CompetitionService {
 
   public addCompetitor(competitor: ICompetitor): Observable<ICompetitor> {
     const options = {headers: this.jsonHeaders};
-    this.url = config.uriBase + '/competitors';
+    this.url = this.competitionServiceUrl + '/competitors';
 
     return this.http.post<ICompetitor>(this.url, competitor, options)
       .pipe(catchError(this.handleError<ICompetitor>('addCompetitor')));
@@ -64,14 +63,14 @@ export class CompetitionService {
 
   public deleteCompetitor(competitorName: string): Observable<string> {
     const options = {headers: this.jsonHeaders};
-    this.url = config.uriBase + '/competitors';
+    this.url = this.competitionServiceUrl + '/competitors';
 
     return this.http.delete<string>(this.url + '/' + competitorName, options)
       .pipe(catchError(this.handleError<string>('deleteCompetitor')));
   }
 
   public getRankingsList(): Observable<IRankingRow[]> {
-    this.url = config.uriBase + '/ranking';
+    this.url = this.competitionServiceUrl + '/ranking';
     const options = { headers: this.jsonHeaders };
 
     // return of(ELEMENT_DATA as IRankingRow[]);
@@ -80,7 +79,7 @@ export class CompetitionService {
   }
 
   public getVersion(): Observable<string> {
-    this.url = config.uriBase + '/version';
+    this.url = this.competitionServiceUrl + '/version';
 
     return this.http.get(this.url, { responseType: 'text' })
       .pipe(catchError(this.handleError<string>('getVersion')));
